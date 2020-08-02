@@ -179,13 +179,13 @@ Tese should be read as the proposed pin assignment for this interface pin, and t
   Ethernet RESET                                                           PIO22      IO_L10P_T1_AD15P_35   /  PIO21      IO_L10N_T1_AD15N_35
   Ethernet INTERRUPT
 
-  PMOD_p1                                                                  PIO9       IO_L6P_T0_16          /  PIO7       IO_L6N_T0_VREF_16
+  PMOD_p1                                                                  PIO35      IO_L6P_T0_34          /  PIO34      IO_L6N_T0_VREF_34
   PMOD_p2
-  PMOD_p3                                                                  PIO35      IO_L6P_T0_34          /  PIO34      IO_L6N_T0_VREF_34
+  PMOD_p3                                                                  PIO41      IO_L16P_T2_34         /  PIO39      IO_L16N_T2_34
   PMOD_p4
-  PMOD_p7                                                                  PIO41      IO_L16P_T2_34         /  PIO39      IO_L16N_T2_34
+  PMOD_p7                                                                  PIO44      IO_L9P_T1_DQS_34      /  PIO42      IO_L9N_T1_DQS_34
   PMOD_p8
-  PMOD_p9                                                                  PIO44      IO_L9P_T1_DQS_34      /  PIO42      IO_L9N_T1_DQS_34
+  PMOD_p9                                                                  PIO9       IO_L6P_T0_16          /  PIO7       IO_L6N_T0_VREF_16
   PMOD_p10
 
   (unused)                                                                 PIO13      IO_L6N_T0_VREF_35
