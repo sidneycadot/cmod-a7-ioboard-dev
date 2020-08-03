@@ -2,8 +2,8 @@
 CMOD A7 I/O board pinout assignments proposal
 =============================================
 
-1. Introduction
----------------
+Introduction
+------------
 
 For pin numbering of the CMOD-A7 module, see the image in digilent's Reference Guide:
 
@@ -11,7 +11,7 @@ https://reference.digilentinc.com/_media/cmod_a7/cmoda7_b_dip.png
 
 A reduced-size version of this image is shown below:
 
-![CMOD A7 pinout](cmoda7_b_dip_40pct.png)
+![CMOD A7 pinout](images/cmoda7_b_dip_40pct.png)
 
 The DIP module has 48 pins.
 
@@ -27,8 +27,8 @@ Pin 25 is GND. It is a bit unfortunate that we only have a single ground pin, bu
 The other 44 pins are PIO (programmable I/O) pins that connect directly to FPGA pins.
 All these pins use LVCMOS33 (low voltage CMOS, 3.3V) signal levels.
 
-2. The 44 PIO pins
-------------------
+The 44 PIO pins
+---------------
 
 Not all PIO pins are created equal:
 
@@ -45,7 +45,7 @@ are separated by a slash.
 Note that pair-capable pins don't /have/ to be used as pairs, they can also be used as two single-ended pins.
 In case of using a clock-capable pair as 2 regular pins, the positive pin of the pair can be used as a single-ended clock input.
 
-### 2.1. Clock-capable differential PIO pairs (6 pairs, 12 pins)
+### Clock-capable differential PIO pairs (6 pairs, 12 pins)
 
 * PIO5       (IO_L11P_T1_SRCC_16)    /  PIO8       (IO_L11N_T1_SRCC_16)
 * PIO18      (IO_L12P_T1_MRCC_35)    /  PIO19      (IO_L12N_T1_MRCC_35)
@@ -54,11 +54,11 @@ In case of using a clock-capable pair as 2 regular pins, the positive pin of the
 * PIO46      (IO_L13P_T2_MRCC_34)    /  PIO43      (IO_L13N_T2_MRCC_34)
 * PIO47      (IO_L14P_T2_SRCC_34)    /  PIO48      (IO_L14N_T2_SRCC_34)
 
-### 2.2. Clock-capable single-ended PIO pins (1 pin)
+### Clock-capable single-ended PIO pins (1 pin)
 
 * PIO3       (IO_L12P_T1_MRCC_16)
 
-### 2.3. Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins)
+### Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins)
 
 * PIO2       (IO_L8P_T1_AD14P_35)    /  PIO1       (IO_L8N_T1_AD14N_35)
 * PIO6       (IO_L3P_T0_DQS_AD5P_35) /  PIO11      (IO_L3N_T0_DQS_AD5N_35)
@@ -75,14 +75,14 @@ In case of using a clock-capable pair as 2 regular pins, the positive pin of the
 * PIO41      (IO_L16P_T2_34)         /  PIO39      (IO_L16N_T2_34)
 * PIO44      (IO_L9P_T1_DQS_34)      /  PIO42      (IO_L9N_T1_DQS_34)
 
-### 2.4. Regular (not clock-capable) single-ended PIO pins (3 pins)
+### Regular (not clock-capable) single-ended PIO pins (3 pins)
 
 * PIO13      (IO_L6N_T0_VREF_35)
 * PIO23      (IO_L19N_T3_VREF_35)
 * PIO45      (IO_L19P_T3_34)
 
-3. External interfaces
-----------------------
+External interfaces
+-------------------
 
 The following interfaces are planned:
 
@@ -105,8 +105,8 @@ The following interfaces are planned:
 
 The grand total for PIO pins: 41 pins used for the interfaces, 7 of which must be clock-capable.
 
-4. Mapping of available PIOs to interfaces
-------------------------------------------
+Mapping of available PIOs to interfaces
+---------------------------------------
 
 The primary consideration wth regard to pin assignment will be the assignment of clock-capable pins. 7 are required, and 7 are available.
 
@@ -120,7 +120,7 @@ one choice to a different choice:
 
 However, PCB layout considerations may lead to deviations from these 'nice-to-have' guidelines!
 
-5. A preliminary pin mapping
+A first pin mapping proposal
 ----------------------------
 
 The following proposed mapping is a starting point for the discussion based on the guidelines given above.
