@@ -201,7 +201,7 @@ We need 16 I/Os, with one of them clock-capable (RXC).
 The pin mapping was chosen mostly to give a natural pin order with respect to the pinout of the RTL8211F PHY,
 which should aid routing.
 
-![Ethernet PHY footprint](images/phy_footprint_50pct.png)
+![Ethernet PHY footprint](images/phy_footprint_60pct.png)
 
 function          | remarks             | proposed pin
 ----------------- | ------------------- | ----------------------------------
