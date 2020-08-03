@@ -17,7 +17,7 @@ Pin 15 and 16 are the analog input channels.
 Pin 24 is VU. This can be used as power supply to the CMOD-A7 (in case no USB is connected) or as
 power monitor in case USB is connected.
 
-  TODO: figure out if/how we can safely use the CMOD module with USB connected or not connected.
+**TODO**: Figure out if/how we can safely use the CMOD module with USB connected or not connected. See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options).
 
 Pin 25 is GND. It is a bit unfortunate that we only have a single ground pin, but it will have to do.
 
