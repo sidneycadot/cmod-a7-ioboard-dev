@@ -1,6 +1,0 @@
-
-Please refer to the file 'pin_assignments_v0.md' instead; it provides markdown-based formatting and inline images.
-
-https://github.com/sidneycadot/cmod-a7-ioboard-dev/blob/master/pin_assignments_v0.md
-
-(SC, 2020-07-03)
