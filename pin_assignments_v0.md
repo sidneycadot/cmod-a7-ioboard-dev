@@ -22,59 +22,61 @@ power monitor in case USB is connected.
 Pin 25 is GND. It is a bit unfortunate that we only have a single ground pin, but it will have to do.
 
 The other 44 pins are PIO (programmable I/O) pins that connect directly to FPGA pins.
-All these pins use LV-CMOS 3.3V signal levels.
+All these pins use LVCMOS33 (low voltage CMOS, 3.3V) signal levels.
 
 The 44 PIO pins
 ---------------
 
 Not all PIO pins are created equal:
 
-  * Some FPGA pins are designed for use as high-performance clock signals.
-  * Some FPGA pins can be configured for use as differential pairs.
+* Some FPGA pins are designed for use as high-performance clock signals.
+* Some FPGA pins can be configured for use as differential pairs.
 
-Below we list all 44 PIO pins. We specify whether the pins are 'clock-capable or 'regular' (i.e., non clock-capable).
+Below we list all 44 PIO pins, both using their PIO number and their Xilinx I/O pin identifier (e.g. 'PIO3 (IO_L12P_T1_MRCC_16)').
+
+We specify whether the pins are 'clock-capable or 'regular' (i.e., non clock-capable). Clock capable pins are those pins for which the Xilinx I/O pin identifier contains either 'MRCC' or 'SRCC'.
 
 For pin pairs that can be used as differential pairs, the positive pin is shown first, the negative pin is shown last; and they
-are seperated by a slash.
+are separated by a slash.
 
 Note that pair-capable pins don't /have/ to be used as pairs, they can also be used as two single-ended pins.
 In case of using a clock-capable pair as 2 regular pins, the positive pin of the pair can be used as a single-ended clock input.
 
 Clock-capable differential PIO pairs (6 pairs, 12 pins):
 
-  * PIO5       IO_L11P_T1_SRCC_16    /  PIO8       IO_L11N_T1_SRCC_16
-  * PIO18      IO_L12P_T1_MRCC_35    /  PIO19      IO_L12N_T1_MRCC_35
-  * PIO36      IO_L12P_T1_MRCC_34    /  PIO40      IO_L12N_T1_MRCC_34
-  * PIO38      IO_L11P_T1_SRCC_34    /  PIO37      IO_L11N_T1_SRCC_34
-  * PIO46      IO_L13P_T2_MRCC_34    /  PIO43      IO_L13N_T2_MRCC_34
-  * PIO47      IO_L14P_T2_SRCC_34    /  PIO48      IO_L14N_T2_SRCC_34
+  * PIO5       (IO_L11P_T1_SRCC_16)    /  PIO8       (IO_L11N_T1_SRCC_16)
+  * PIO18      (IO_L12P_T1_MRCC_35)    /  PIO19      (IO_L12N_T1_MRCC_35)
+  * PIO36      (IO_L12P_T1_MRCC_34)    /  PIO40      (IO_L12N_T1_MRCC_34)
+  * PIO38      (IO_L11P_T1_SRCC_34)    /  PIO37      (IO_L11N_T1_SRCC_34)
+  * PIO46      (IO_L13P_T2_MRCC_34)    /  PIO43      (IO_L13N_T2_MRCC_34)
+  * PIO47      (IO_L14P_T2_SRCC_34)    /  PIO48      (IO_L14N_T2_SRCC_34)
 
 Clock-capable single-ended PIO pins (1 pin):
 
-  * PIO3       IO_L12P_T1_MRCC_16
+  * PIO3       (IO_L12P_T1_MRCC_16)
 
 Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins):
 
-  * PIO2       IO_L8P_T1_AD14P_35    /  PIO1       IO_L8N_T1_AD14N_35
-  * PIO6       IO_L3P_T0_DQS_AD5P_35 /  PIO11      IO_L3N_T0_DQS_AD5N_35
-  * PIO9       IO_L6P_T0_16          /  PIO7       IO_L6N_T0_VREF_16
-  * PIO10      IO_L7P_T1_AD6P_35     /  PIO4       IO_L7N_T1_AD6N_35
-  * PIO12      IO_L5P_T0_AD13P_35    /  PIO14      IO_L5N_T0_AD13N_35
-  * PIO20      IO_L9P_T1_DQS_AD7P_35 /  PIO17      IO_L9N_T1_DQS_AD7N_35
-  * PIO22      IO_L10P_T1_AD15P_35   /  PIO21      IO_L10N_T1_AD15N_35
-  * PIO26      IO_L2P_T0_34          /  PIO27      IO_L2N_T0_34
-  * PIO28      IO_L1P_T0_34          /  PIO30      IO_L1N_T0_34
-  * PIO29      IO_L3P_T0_DQS_34      /  PIO31      IO_L3N_T0_DQS_34
-  * PIO33      IO_L5P_T0_34          /  PIO32      IO_L5N_T0_34
-  * PIO35      IO_L6P_T0_34          /  PIO34      IO_L6N_T0_VREF_34
-  * PIO41      IO_L16P_T2_34         /  PIO39      IO_L16N_T2_34
-  * PIO44      IO_L9P_T1_DQS_34      /  PIO42      IO_L9N_T1_DQS_34
+  * PIO2       (IO_L8P_T1_AD14P_35)    /  PIO1       (IO_L8N_T1_AD14N_35)
+  * PIO6       (IO_L3P_T0_DQS_AD5P_35) /  PIO11      (IO_L3N_T0_DQS_AD5N_35)
+  * PIO9       (IO_L6P_T0_16)          /  PIO7       (IO_L6N_T0_VREF_16)
+  * PIO10      (IO_L7P_T1_AD6P_35)     /  PIO4       (IO_L7N_T1_AD6N_35)
+  * PIO12      (IO_L5P_T0_AD13P_35)    /  PIO14      (IO_L5N_T0_AD13N_35)
+  * PIO20      (IO_L9P_T1_DQS_AD7P_35) /  PIO17      (IO_L9N_T1_DQS_AD7N_35)
+  * PIO22      (IO_L10P_T1_AD15P_35)   /  PIO21      (IO_L10N_T1_AD15N_35)
+  * PIO26      (IO_L2P_T0_34)          /  PIO27      (IO_L2N_T0_34)
+  * PIO28      (IO_L1P_T0_34)          /  PIO30      (IO_L1N_T0_34)
+  * PIO29      (IO_L3P_T0_DQS_34)      /  PIO31      (IO_L3N_T0_DQS_34)
+  * PIO33      (IO_L5P_T0_34)          /  PIO32      (IO_L5N_T0_34)
+  * PIO35      (IO_L6P_T0_34)          /  PIO34      (IO_L6N_T0_VREF_34)
+  * PIO41      (IO_L16P_T2_34)         /  PIO39      (IO_L16N_T2_34)
+  * PIO44      (IO_L9P_T1_DQS_34)      /  PIO42      (IO_L9N_T1_DQS_34)
 
 Regular (not clock-capable) single-ended PIO pins (3 pins):
 
-  * PIO13      IO_L6N_T0_VREF_35
-  * PIO23      IO_L19N_T3_VREF_35
-  * PIO45      IO_L19P_T3_34
+  * PIO13      (IO_L6N_T0_VREF_35)
+  * PIO23      (IO_L19N_T3_VREF_35)
+  * PIO45      (IO_L19P_T3_34)
 
 
 External interfaces
