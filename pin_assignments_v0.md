@@ -45,7 +45,7 @@ are separated by a slash.
 Note that pair-capable pins don't /have/ to be used as pairs, they can also be used as two single-ended pins.
 In case of using a clock-capable pair as 2 regular pins, the positive pin of the pair can be used as a single-ended clock input.
 
-### Clock-capable differential PIO pairs (6 pairs, 12 pins)
+#### Clock-capable differential PIO pairs (6 pairs, 12 pins)
 
 * PIO5       (IO_L11P_T1_SRCC_16)    /  PIO8       (IO_L11N_T1_SRCC_16)
 * PIO18      (IO_L12P_T1_MRCC_35)    /  PIO19      (IO_L12N_T1_MRCC_35)
@@ -54,11 +54,11 @@ In case of using a clock-capable pair as 2 regular pins, the positive pin of the
 * PIO46      (IO_L13P_T2_MRCC_34)    /  PIO43      (IO_L13N_T2_MRCC_34)
 * PIO47      (IO_L14P_T2_SRCC_34)    /  PIO48      (IO_L14N_T2_SRCC_34)
 
-### Clock-capable single-ended PIO pins (1 pin)
+#### Clock-capable single-ended PIO pins (1 pin)
 
 * PIO3       (IO_L12P_T1_MRCC_16)
 
-### Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins)
+#### Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins)
 
 * PIO2       (IO_L8P_T1_AD14P_35)    /  PIO1       (IO_L8N_T1_AD14N_35)
 * PIO6       (IO_L3P_T0_DQS_AD5P_35) /  PIO11      (IO_L3N_T0_DQS_AD5N_35)
@@ -75,7 +75,7 @@ In case of using a clock-capable pair as 2 regular pins, the positive pin of the
 * PIO41      (IO_L16P_T2_34)         /  PIO39      (IO_L16N_T2_34)
 * PIO44      (IO_L9P_T1_DQS_34)      /  PIO42      (IO_L9N_T1_DQS_34)
 
-### Regular (not clock-capable) single-ended PIO pins (3 pins)
+#### Regular (not clock-capable) single-ended PIO pins (3 pins)
 
 * PIO13      (IO_L6N_T0_VREF_35)
 * PIO23      (IO_L19N_T3_VREF_35)
@@ -91,16 +91,16 @@ The following interfaces are planned:
 * 8x DIGITAL-OUT (BNC) — 2 of which are clock-capable
 * 1x REFCLOCK-IN (BNC) — must be clock-capable
 * 16x Ethernet RGMII   — 2 of which must be clock-capable.
-  -     1x TXC         — must be clock-capable
-  -     1x TXCTL
-  -     4x TXD
-  -      1x RXC        — 1 must be clock-capable
-  -      1x RXCTL
-  -      4x RXD
-  -      1x MDC        — pseudo-clock, no need to make it clock-capable.
-  -      1x MDIO
-  -      1x RESET
-  -      1x INTERRUPT
+    - 1x TXC           — must be clock-capable
+    - 1x TXCTL
+    - 4x TXD
+    - 1x RXC           — 1 must be clock-capable
+    - 1x RXCTL
+    - 4x RXD
+    - 1x MDC           — pseudo-clock, no need to make it clock-capable.
+    - 1x MDIO
+    - 1x RESET
+    - 1x INTERRUPT
 * 8x PMOD              — no special requirements.
 
 The grand total for PIO pins: 41 pins used for the interfaces, 7 of which must be clock-capable.
