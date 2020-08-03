@@ -1,6 +1,9 @@
 
-Introduction
-============
+CMOD A7 I/O board pinout assignments proposal
+=============================================
+
+1. Introduction
+---------------
 
 For pin numbering of the CMOD-A7 module, see the image in digilent's Reference Guide:
 
@@ -17,15 +20,15 @@ Pin 15 and 16 are the analog input channels.
 Pin 24 is VU. This can be used as power supply to the CMOD-A7 (in case no USB is connected) or as
 power monitor in case USB is connected.
 
-**TODO**: Figure out if/how we can safely use the CMOD module with USB connected or not connected. See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options). A possible solution using a Schottky diode is alto mentioned there.
+**TODO**: Figure out if/how we can safely use the CMOD module with USB connected or not connected. See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options). A possible solution using a Schottky diode is also mentioned there.
 
 Pin 25 is GND. It is a bit unfortunate that we only have a single ground pin, but it will have to do.
 
 The other 44 pins are PIO (programmable I/O) pins that connect directly to FPGA pins.
 All these pins use LVCMOS33 (low voltage CMOS, 3.3V) signal levels.
 
-The 44 PIO pins
----------------
+2. The 44 PIO pins
+------------------
 
 Not all PIO pins are created equal:
 
@@ -42,8 +45,7 @@ are separated by a slash.
 Note that pair-capable pins don't /have/ to be used as pairs, they can also be used as two single-ended pins.
 In case of using a clock-capable pair as 2 regular pins, the positive pin of the pair can be used as a single-ended clock input.
 
-Clock-capable differential PIO pairs (6 pairs, 12 pins)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### 2.1. Clock-capable differential PIO pairs (6 pairs, 12 pins)
 
 * PIO5       (IO_L11P_T1_SRCC_16)    /  PIO8       (IO_L11N_T1_SRCC_16)
 * PIO18      (IO_L12P_T1_MRCC_35)    /  PIO19      (IO_L12N_T1_MRCC_35)
@@ -52,13 +54,11 @@ Clock-capable differential PIO pairs (6 pairs, 12 pins)
 * PIO46      (IO_L13P_T2_MRCC_34)    /  PIO43      (IO_L13N_T2_MRCC_34)
 * PIO47      (IO_L14P_T2_SRCC_34)    /  PIO48      (IO_L14N_T2_SRCC_34)
 
-Clock-capable single-ended PIO pins (1 pin)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### 2.2. Clock-capable single-ended PIO pins (1 pin)
 
 * PIO3       (IO_L12P_T1_MRCC_16)
 
-Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### 2.3. Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins)
 
 * PIO2       (IO_L8P_T1_AD14P_35)    /  PIO1       (IO_L8N_T1_AD14N_35)
 * PIO6       (IO_L3P_T0_DQS_AD5P_35) /  PIO11      (IO_L3N_T0_DQS_AD5N_35)
@@ -75,16 +75,14 @@ Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins)
 * PIO41      (IO_L16P_T2_34)         /  PIO39      (IO_L16N_T2_34)
 * PIO44      (IO_L9P_T1_DQS_34)      /  PIO42      (IO_L9N_T1_DQS_34)
 
-Regular (not clock-capable) single-ended PIO pins (3 pins)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### 2.4. Regular (not clock-capable) single-ended PIO pins (3 pins)
 
 * PIO13      (IO_L6N_T0_VREF_35)
 * PIO23      (IO_L19N_T3_VREF_35)
 * PIO45      (IO_L19P_T3_34)
 
-
-External interfaces
--------------------
+3. External interfaces
+----------------------
 
 The following interfaces are planned:
 
@@ -107,8 +105,8 @@ The following interfaces are planned:
 
 The grand total for PIO pins: 41 pins used for the interfaces, 7 of which must be clock-capable.
 
-Mapping of available PIOs to interfaces
----------------------------------------
+4. Mapping of available PIOs to interfaces
+------------------------------------------
 
 The primary consideration wth regard to pin assignment will be the assignment of clock-capable pins. 7 are required, and 7 are available.
 
@@ -122,8 +120,8 @@ one choice to a different choice:
 
 However, PCB layout considerations may lead to deviations from these 'nice-to-have' guidelines!
 
-A preliminary pin mapping
--------------------------
+5. A preliminary pin mapping
+----------------------------
 
 The following proposed mapping is a starting point for the discussion based on the guidelines given above.
 These can certainly be revised if considerations such as PCB layout require it.
