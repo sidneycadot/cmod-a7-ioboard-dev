@@ -8,11 +8,13 @@ https://reference.digilentinc.com/_media/cmod_a7/cmoda7_b_dip.png
 
 A reduced-size version of this image is shown below:
 
-![CMOD A7 pinout](cmoda7_b_dip_25pct.png)
+![CMOD A7 pinout](cmoda7_b_dip_30pct.png)
+
+![CMOD A7 pinout](cmoda7_b_dip_40pct.png)
 
 The DIP module has 48 pins.
 
-Pin 15, 16 are the analog input channels.
+Pin 15 and 16 are the analog input channels.
 
 Pin 24 is VU. This can be used as power supply to the CMOD-A7 (in case no USB is connected) or as
 power monitor in case USB is connected.
