@@ -242,6 +242,7 @@ function           | remarks | unused pin
 First mapping proposal — physical layout
 ----------------------------------------
 
+```
                    Ethernet TXD1   rp1n -  1 (35)        (34) 48 - cp6n      BNC DIGIN Channel #4
                    Ethernet TXD0   rp1p -  2 (35)        (34) 47 - cp6p      BNC DIGIN Channel #3 (clock capable)
    (clock capable) BNC REFLCK-IN    c7p -  3 (16)        (34) 46 - cp5p      BNC DIGIN Channel #1 (clock capable)
@@ -266,3 +267,4 @@ First mapping proposal — physical layout
                   Ethernet RESET   rp7p - 22 (35)        (34) 27 - rp8n      BNC DIGOUT Channel #6
                         (unused)        - 23 (35)        (34) 26 - rp8p      BNC DIGOUT Channel #5
                               VU        - 24                  25 -           GND
+```
