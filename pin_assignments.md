@@ -228,6 +228,8 @@ These are the leftover differential pair pins, coming from banks 34 and 35.
 
 Consecutive IOs are chosen to be positive/negative FPGA pins of a differential I/O pair of the FPGA.
 
+**TO BE DECIDED: will we give the PMOD connectors a standard 200 Ohm series resistor? I think yes.**
+
 function          | remarks | proposed pin
 ----------------- | ------- | ------------------------------
 PMOD_p1           |         | PIO2       (IO_L8P_T1_AD14P_35)
