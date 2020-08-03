@@ -238,3 +238,31 @@ function           | remarks | unused pin
 (unused)           |         | PIO13      (IO_L6N_T0_VREF_35)
 (unused)           |         | PIO23      (IO_L19N_T3_VREF_35)
 (unused)           |         | PIO45      (IO_L19P_T3_34)
+
+First mapping proposal — physical layout
+----------------------------------------
+
+                   Ethernet TXD1   rp1n -  1 (35)        (34) 48 - cp6n      BNC DIGIN Channel #4
+                   Ethernet TXD0   rp1p -  2 (35)        (34) 47 - cp6p      BNC DIGIN Channel #3 (clock capable)
+   (clock capable) BNC REFLCK-IN    c7p -  3 (16)        (34) 46 - cp5p      BNC DIGIN Channel #1 (clock capable)
+                   Ethernet RXD1   rp4n -  4 (35)        (34) 45 -           (unused)
+    (clock capable) Ethernet TXC   cp1p -  5 (16)        (34) 44 - rp14p     PMOD_p7
+                   Ethernet TXD2   rp2p -  6 (35)        (34) 43 - cp5n      BNC DIGIN Channel #2
+                        PMOD_p10   rp3n -  7 (16)        (34) 42 - rp14n     PMOD_p8
+                  Ethernet TXCTL   cp1n -  8 (16)        (34) 41 - rp13p     PMOD_p3
+                         PMOD_p9   rp3p -  9 (16)        (34) 40 - cp3n      BNC DIGOUT Channel #2
+                   Ethernet RXD0   rp4p - 10 (35)        (34) 39 - rp13n     PMOD_p4
+                   Ethernet TXD3   rp2n - 11 (35)        (34) 38 - cp4p      BNC DIGOUT Channel #3 (clock capable)
+                   Ethernet RXD2   rp5p - 12 (35)        (34) 37 - cp4n      BNC DIGOUT Channel #4
+                        (unused)        - 13 (35)        (34) 36 - cp3p      BNC DIGOUT Channel #1 (clock capable)
+                   Ethernet RXD3   rp5n - 14 (35)        (34) 35 - rp12p     PMOD_p1
+            ANALOG-IN Channel #1        - 15             (34) 34 - rp12n     PMOD_p2
+            ANALOG-IN Channel #2        - 16             (34) 33 - rp11p     BNC DIGIN Channel #7
+                   Ethernet MDIO   rp6n - 17 (35)        (34) 32 - rp11n     BNC DIGIN Channel #8
+    (clock capable) Ethernet RXC   cp2p - 18 (35)        (34) 31 - rp10n     BNC DIGIN Channel #6
+                  Ethernet RXCTL   cp2n - 19 (35)        (34) 30 - rp9n      BNC DIGOUT Channel #8
+                    Ethernet MDC   rp6p - 20 (35)        (34) 29 - rp10p     BNC DIGIN Channel #5
+              Ethernet INTERRUPT   rp7n - 21 (35)        (34) 28 - rp9p      BNC DIGOUT Channel #7
+                  Ethernet RESET   rp7p - 22 (35)        (34) 27 - rp8n      BNC DIGOUT Channel #6
+                        (unused)        - 23 (35)        (34) 26 - rp8p      BNC DIGOUT Channel #5
+                              VU        - 24                  25 -           GND
