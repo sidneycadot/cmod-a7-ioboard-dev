@@ -58,7 +58,7 @@ In case of using a clock-capable pair as 2 regular pins, the positive pin of the
 
 * PIO3       (IO_L12P_T1_MRCC_16)
 
-#### Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins)
+#### Regular (not clock-capable) differential PIO pairs (14 pairs, 28 pins)
 
 * PIO2       (IO_L8P_T1_AD14P_35)    /  PIO1       (IO_L8N_T1_AD14N_35)
 * PIO6       (IO_L3P_T0_DQS_AD5P_35) /  PIO11      (IO_L3N_T0_DQS_AD5N_35)
