@@ -17,7 +17,7 @@ Pin 15 and 16 are the analog input channels.
 Pin 24 is VU. This can be used as power supply to the CMOD-A7 (in case no USB is connected) or as
 power monitor in case USB is connected.
 
-**TODO**: Figure out if/how we can safely use the CMOD module with USB connected or not connected. See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options).
+**TODO**: Figure out if/how we can safely use the CMOD module with USB connected or not connected. See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options). A possible solution using a Schottky diode is alto mentioned there.
 
 Pin 25 is GND. It is a bit unfortunate that we only have a single ground pin, but it will have to do.
 
@@ -42,41 +42,45 @@ are separated by a slash.
 Note that pair-capable pins don't /have/ to be used as pairs, they can also be used as two single-ended pins.
 In case of using a clock-capable pair as 2 regular pins, the positive pin of the pair can be used as a single-ended clock input.
 
-Clock-capable differential PIO pairs (6 pairs, 12 pins):
+Clock-capable differential PIO pairs (6 pairs, 12 pins)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  * PIO5       (IO_L11P_T1_SRCC_16)    /  PIO8       (IO_L11N_T1_SRCC_16)
-  * PIO18      (IO_L12P_T1_MRCC_35)    /  PIO19      (IO_L12N_T1_MRCC_35)
-  * PIO36      (IO_L12P_T1_MRCC_34)    /  PIO40      (IO_L12N_T1_MRCC_34)
-  * PIO38      (IO_L11P_T1_SRCC_34)    /  PIO37      (IO_L11N_T1_SRCC_34)
-  * PIO46      (IO_L13P_T2_MRCC_34)    /  PIO43      (IO_L13N_T2_MRCC_34)
-  * PIO47      (IO_L14P_T2_SRCC_34)    /  PIO48      (IO_L14N_T2_SRCC_34)
+* PIO5       (IO_L11P_T1_SRCC_16)    /  PIO8       (IO_L11N_T1_SRCC_16)
+* PIO18      (IO_L12P_T1_MRCC_35)    /  PIO19      (IO_L12N_T1_MRCC_35)
+* PIO36      (IO_L12P_T1_MRCC_34)    /  PIO40      (IO_L12N_T1_MRCC_34)
+* PIO38      (IO_L11P_T1_SRCC_34)    /  PIO37      (IO_L11N_T1_SRCC_34)
+* PIO46      (IO_L13P_T2_MRCC_34)    /  PIO43      (IO_L13N_T2_MRCC_34)
+* PIO47      (IO_L14P_T2_SRCC_34)    /  PIO48      (IO_L14N_T2_SRCC_34)
 
-Clock-capable single-ended PIO pins (1 pin):
+Clock-capable single-ended PIO pins (1 pin)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  * PIO3       (IO_L12P_T1_MRCC_16)
+* PIO3       (IO_L12P_T1_MRCC_16)
 
-Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins):
+Regular (not clock-capable) differential PIO pairs (14 pair, 28 pins)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  * PIO2       (IO_L8P_T1_AD14P_35)    /  PIO1       (IO_L8N_T1_AD14N_35)
-  * PIO6       (IO_L3P_T0_DQS_AD5P_35) /  PIO11      (IO_L3N_T0_DQS_AD5N_35)
-  * PIO9       (IO_L6P_T0_16)          /  PIO7       (IO_L6N_T0_VREF_16)
-  * PIO10      (IO_L7P_T1_AD6P_35)     /  PIO4       (IO_L7N_T1_AD6N_35)
-  * PIO12      (IO_L5P_T0_AD13P_35)    /  PIO14      (IO_L5N_T0_AD13N_35)
-  * PIO20      (IO_L9P_T1_DQS_AD7P_35) /  PIO17      (IO_L9N_T1_DQS_AD7N_35)
-  * PIO22      (IO_L10P_T1_AD15P_35)   /  PIO21      (IO_L10N_T1_AD15N_35)
-  * PIO26      (IO_L2P_T0_34)          /  PIO27      (IO_L2N_T0_34)
-  * PIO28      (IO_L1P_T0_34)          /  PIO30      (IO_L1N_T0_34)
-  * PIO29      (IO_L3P_T0_DQS_34)      /  PIO31      (IO_L3N_T0_DQS_34)
-  * PIO33      (IO_L5P_T0_34)          /  PIO32      (IO_L5N_T0_34)
-  * PIO35      (IO_L6P_T0_34)          /  PIO34      (IO_L6N_T0_VREF_34)
-  * PIO41      (IO_L16P_T2_34)         /  PIO39      (IO_L16N_T2_34)
-  * PIO44      (IO_L9P_T1_DQS_34)      /  PIO42      (IO_L9N_T1_DQS_34)
+* PIO2       (IO_L8P_T1_AD14P_35)    /  PIO1       (IO_L8N_T1_AD14N_35)
+* PIO6       (IO_L3P_T0_DQS_AD5P_35) /  PIO11      (IO_L3N_T0_DQS_AD5N_35)
+* PIO9       (IO_L6P_T0_16)          /  PIO7       (IO_L6N_T0_VREF_16)
+* PIO10      (IO_L7P_T1_AD6P_35)     /  PIO4       (IO_L7N_T1_AD6N_35)
+* PIO12      (IO_L5P_T0_AD13P_35)    /  PIO14      (IO_L5N_T0_AD13N_35)
+* PIO20      (IO_L9P_T1_DQS_AD7P_35) /  PIO17      (IO_L9N_T1_DQS_AD7N_35)
+* PIO22      (IO_L10P_T1_AD15P_35)   /  PIO21      (IO_L10N_T1_AD15N_35)
+* PIO26      (IO_L2P_T0_34)          /  PIO27      (IO_L2N_T0_34)
+* PIO28      (IO_L1P_T0_34)          /  PIO30      (IO_L1N_T0_34)
+* PIO29      (IO_L3P_T0_DQS_34)      /  PIO31      (IO_L3N_T0_DQS_34)
+* PIO33      (IO_L5P_T0_34)          /  PIO32      (IO_L5N_T0_34)
+* PIO35      (IO_L6P_T0_34)          /  PIO34      (IO_L6N_T0_VREF_34)
+* PIO41      (IO_L16P_T2_34)         /  PIO39      (IO_L16N_T2_34)
+* PIO44      (IO_L9P_T1_DQS_34)      /  PIO42      (IO_L9N_T1_DQS_34)
 
-Regular (not clock-capable) single-ended PIO pins (3 pins):
+Regular (not clock-capable) single-ended PIO pins (3 pins)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  * PIO13      (IO_L6N_T0_VREF_35)
-  * PIO23      (IO_L19N_T3_VREF_35)
-  * PIO45      (IO_L19P_T3_34)
+* PIO13      (IO_L6N_T0_VREF_35)
+* PIO23      (IO_L19N_T3_VREF_35)
+* PIO45      (IO_L19P_T3_34)
 
 
 External interfaces
@@ -84,50 +88,35 @@ External interfaces
 
 The following interfaces are planned:
 
-    8x DIGITAL-IN (BNC)  -- 2 of which are clock-capable
+* 2x ANALOG-IN (BNC)   — Special pins 15 and 16 of the CMOD module; analog inputs, not PIOs
+* 8x DIGITAL-IN (BNC)  — 2 of which are clock-capable
+* 8x DIGITAL-OUT (BNC) — 2 of which are clock-capable
+* 1x REFCLOCK-IN (BNC) — must be clock-capable
+* 16x Ethernet RGMII   — 2 of which must be clock-capable.
+  -     1x TXC         — must be clock-capable
+  -     1x TXCTL
+  -     4x TXD
+  -      1x RXC        — 1 must be clock-capable
+  -      1x RXCTL
+  -      4x RXD
+  -      1x MDC        — pseudo-clock, no need to make it clock-capable.
+  -      1x MDIO
+  -      1x RESET
+  -      1x INTERRUPT
+* 8x PMOD              — no special requirements.
 
-    8x DIGITAL-OUT (BNC) -- 2 of which are clock-capable
-
-    2x ANALOG-IN (BNC)   -- Special pins 15 and 16 of the CMOD module, not PIOs
-
-    1x REFCLOCK-IN (BNC) -- 1 must be clock-capable
-
-    Ethernet RGMII:
-
-        1x TXC           -- 1 must be clock-capable
-        1x TXCTL
-        4x TXD
-
-        1x RXC           -- 1 must be clock-capable
-        1x RXCTL
-        4x RXD
-
-        1x MDC           -- (pseudo-clock, no need to make it clock-capable)
-        1x MDIO
-
-        1x RESET
-        1x INTERRUPT
-
-        ==> Ethernet RGMII total: 16 pins, 2 of which must be clock-capable.
-
-    PMOD:
-
-        8x PIO pins, no special requirements.
-
-
-    Grand total for PIO pins: 41 pins used, of which 7 must be clock-capable.
+The grand total for PIO pins: 41 pins used for the interfaces, 7 of which must be clock-capable.
 
 Mapping of available PIOs to interfaces
 ---------------------------------------
 
-The prime consideration w.r.t. pin assignment will be the assignment of clock-capable pins. 7 are required, and 7 are available.
+The primary consideration wth regard to pin assignment will be the assignment of clock-capable pins. 7 are required, and 7 are available.
 
 Two other considerations are far less important, but can guide the mapping choice in case there are no clear reasons to prefer
 one choice to a different choice:
 
 * While our design will not use differential signaling, it is somewhat nice if P/N pairs are used for ports that have similar
   functions and sit next to each other. For example, for our 8 BNC inputs, it is nice if we use 4 differential pin pairs.
-
 * Inside the FPGA, the signals are organized in I/O banks. It is nice to aim to assign similar functions to the same I/O bank,
   e.g. to have all digital I/O inputs connected to FPGA pins belonging to bank 34.
 
