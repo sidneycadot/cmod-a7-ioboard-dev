@@ -128,12 +128,21 @@ These can certainly be revised if considerations such as PCB layout require it.
 
 #### Analog input (2 pins)
 
-function         | remarks                                              | proposed pin
----------------- | ---------------------------------------------------- | -------------
-BNC Analog-In #1 | via filter, buffer; range mapped from 0-5V to 0-3.3V | PIO15 (fixed)
-BNC Analog-In #2 | via filter, buffer; range mapped from 0-5V to 0-3.3V | PIO16 (fixed)
+The analog input pins are fixed by the CMOD A7 design to pins 15 and 16 of the DIP module.
+
+function         | remarks                                              | pin
+---------------- | ---------------------------------------------------- | -----
+BNC Analog-In #1 | via filter, buffer; range mapped from 0-5V to 0-3.3V | 15
+BNC Analog-In #2 | via filter, buffer; range mapped from 0-5V to 0-3.3V | 16
 
 #### Digital output pins via BNC (8 pins, 2 of which are clock-capable)
+
+We want 8 digital outputs, with 2 of them clock-capable.
+
+We get the clock-capable outputs from bank 34, and select the other pins from bank 34 as well.
+
+Consecutive odd/even numbered digital outputs are chosen to be positive/negative FPGA pins of a
+differential I/O pair of the FPGA.
 
 function           | remarks       | proposed pin
 ------------------ | ------------- | -------------------------------
@@ -148,6 +157,13 @@ BNC Digital-Out #8 |               | PIO30      (IO_L1N_T0_34)
 
 #### Digital input pins via BNC (8 pins, 2 of which are clock-capable)
 
+We want 8 digital inputs, with 2 of them clock-capable.
+
+We get the clock-capable inputs from bank 34, and select the other pins from bank 34 as well.
+
+Consecutive odd/even numbered digital outputs are chosen to be positive/negative FPGA pins of a
+differential I/O pair of the FPGA.
+
 function          | remarks       | proposed pin
 ----------------- | ------------- | -------------------------------
 BNC Digital-In #1 | clock-capable | PIO46      (IO_L13P_T2_MRCC_34)
@@ -161,11 +177,21 @@ BNC Digital-In #8 |               | PIO32      (IO_L5N_T0_34)
 
 #### External clock reference (1 pin, clock capable)
 
+The reference clock input will connect to PIO3, the one purely single-ended clock pin available
+on the CMOD-A7 DIP pinout.
+
 function          | remarks                                       | proposed pin
 ----------------- | --------------------------------------------- | -------------------------
 BNC RefClock-In   | clock-capable; via AC coupling and comparator | PIO3 (IO_L12P_T1_MRCC_16)
 
 #### Ethernet RGMII (16 pins, 2 of which are clock-capable)
+
+We need 16 I/Os, with 2 of them clock-capable.
+
+We get one of the clocks from bank 16, and the other one from bank 35. All other pins are
+taken from bank 35 as well.
+
+Consecutive IOs are chosen to be positive/negative FPGA pins of a differential I/O pair of the FPGA.
 
 function           | remarks                            | proposed pin
 ------------------ | ---------------------------------- | ----------------------------------
@@ -187,6 +213,12 @@ Ethernet RESET     |                                    | PIO22      (IO_L10P_T1
 Ethernet INTERRUPT |                                    | PIO21      (IO_L10N_T1_AD15N_35)
 
 #### Digilent PMOD connector (8 pins, no special requirements)
+
+We need 8 I/Os, with no requirements on clock capability.
+
+These are the leftover differential pair pins, coming from banks 34 and 16.
+
+Consecutive IOs are chosen to be positive/negative FPGA pins of a differential I/O pair of the FPGA.
 
 function           | remarks                            | proposed pin
 ------------------ | ---------------------------------- | ------------------------------
