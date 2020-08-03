@@ -35,7 +35,7 @@ The 44 PIO pins
 
 Not all PIO pins are created equal:
 
-* Some FPGA pins are designed for use as high-performance clock input signals.
+* Some FPGA pins are designed for high-performance clock input signals.
 * Some FPGA pins can be configured for use as differential pairs.
 
 Below we list all 44 PIO pins, both using their PIO number and their Xilinx I/O pin identifier, for example 'PIO3 (IO_L12P_T1_MRCC_16)'.
@@ -44,9 +44,9 @@ We specify whether the pins are 'clock-input-capable or 'regular' (i.e., non clo
 
 Clock-input capable pins are those pins for which the Xilinx I/O pin identifier contains either 'MRCC' or 'SRCC'. These pins can be used to route high-quality clock signals into the FPGA.
 
-* Note 1: Regular pins can also be used to lead clock signals into the FPGA, but this is sub-optimal, discouraged by the Xilinx documentation, and requires constraint file overrides
-          to override warnings in Vivado.
-* Note 2: Clock signals routed from the inside of the FPGA to the outside can to the outside can be routed over 'regular' pins without issue.
+* Note 1: Regular pins can also be used to lead clock signals into the FPGA, but this is sub-optimal, discouraged by the Xilinx documentation,
+          and requires constraint file overrides to override warnings in Vivado.
+* Note 2: Clock signals routed from the inside of the FPGA to the outside can be routed over 'regular' pins without issue.
 
 For pin pairs that can be used as differential pairs, the positive pin is shown first, the negative pin is shown last; and they are separated by a slash.
 
@@ -120,14 +120,14 @@ The primary consideration with regard to pin assignment will be the assignment o
 Seven clock-input-capable pins are available on the CMOD A7, and all seven of them will be explicitly used.
 
 Two other considerations are far less important, but can guide the mapping choice in case there are no clear reasons to prefer
-one choice to a different choice:
+one choice over a different choice:
 
 * While our design will not use differential signaling, it is somewhat nice if P/N pairs are used for ports that have similar
-  functions and sit next to each other. For example, for our 8 BNC inputs, it is nice if we use 4 differential pin pairs.
+  functions and sit next to each other. For example, for our 8 BNC outputs, it is nice if we use 4 differential pin pairs.
 * Inside the FPGA, the signals are organized in I/O banks. It is nice to aim to assign similar functions to the same I/O bank,
   e.g. to have all digital I/O inputs connected to FPGA pins belonging to bank 34.
 
-However, PCB layout considerations may lead to deviations from these 'nice-to-have' guidelines!
+However, other considerations such as PCB layout may lead to deviations from these 'nice-to-have' guidelines!
 
 Pin mapping proposal
 --------------------
@@ -140,7 +140,7 @@ It can be revised if considerations such as PCB layout require it.
 The analog input pins are fixed by the CMOD A7 design to pins 15 and 16 of the DIP module.
 
 function         | remarks                                              | pin
----------------- | ---------------------------------------------------- | -----
+---------------- | ---------------------------------------------------- | ---
 BNC Analog-In #1 | via filter, buffer; range mapped from 0…5V to 0…3.3V | 15
 BNC Analog-In #2 | via filter, buffer; range mapped from 0…5V to 0…3.3V | 16
 
@@ -154,7 +154,7 @@ Consecutive odd/even numbered digital outputs are chosen to be positive/negative
 differential I/O pair of the FPGA.
 
 function           | remarks       | proposed pin
------------------- | ------------- | -------------------------------
+------------------ | ------------- | -----------------------------
 BNC Digital-Out #0 |               | PIO26      (IO_L2P_T0_34)
 BNC Digital-Out #1 |               | PIO27      (IO_L2N_T0_34)
 BNC Digital-Out #2 |               | PIO28      (IO_L1P_T0_34)
@@ -228,7 +228,7 @@ These are the leftover differential pair pins, coming from banks 34 and 35.
 
 Consecutive IOs are chosen to be positive/negative FPGA pins of a differential I/O pair of the FPGA.
 
-**TO BE DECIDED: will we give the PMOD connectors a standard 200 Ohm series resistor? I think yes.**
+**TO BE DECIDED: will we give the PMOD connectors a standard 200 Ohm series resistor? This is safer, and we already have BNCs for high-quality signals. So probably yes.**
 
 function          | remarks | proposed pin
 ----------------- | ------- | ------------------------------
