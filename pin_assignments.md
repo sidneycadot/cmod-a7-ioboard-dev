@@ -2,25 +2,21 @@
 CMOD A7 I/O board pinout assignments proposal
 =============================================
 
-Revision 2, 2020-07-03 (SC).
+Revision 2.0.2, 2020-07-03 (SC).
 
 Introduction
 ------------
 
-For pin numbering of the CMOD-A7 module, see the image in Digilent's Reference Guide:
-
-https://reference.digilentinc.com/_media/cmod_a7/cmoda7_b_dip.png
-
-A reduced-size version of this image is shown below:
+The image below shows the pin numbering of the CMOD-A7 development board:
 
 ![CMOD A7 pinout](images/cmoda7_b_dip_40pct.png)
 
-The DIP module has 48 pins.
+The module is a DIP package with 48 pins.
 
-Pin 15 and 16 are the analog input channels.
+Pins 15 and 16 are the analog input channels.
 
-Pin 24 is VU. This can be used as power supply to the CMOD-A7 (in case no USB is connected) or as
-power monitor in case USB is connected.
+Pin 24 is VU. It can be used as power supply to the CMOD-A7 (in case no USB is connected)
+or as power monitor in case USB is connected.
 
 **TODO**: Figure out if/how we can safely use the CMOD module with USB connected or not connected. See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options).
 A possible solution using a Schottky diode is also mentioned there.
@@ -44,13 +40,15 @@ We specify whether the pins are 'clock-input-capable or 'regular' (i.e., non clo
 
 Clock-input capable pins are those pins for which the Xilinx I/O pin identifier contains either 'MRCC' or 'SRCC'. These pins can be used to route high-quality clock signals into the FPGA.
 
-* Note 1: Regular pins can also be used to lead clock signals into the FPGA, but this is sub-optimal, discouraged by the Xilinx documentation,
+* Note 1: Regular pins can also be used to lead clock signals into the FPGA, but this is sub-optimal,
+          explicitly discouraged by the Xilinx documentation,
           and requires constraint file overrides to override warnings in Vivado.
 * Note 2: Clock signals routed from the inside of the FPGA to the outside can be routed over 'regular' pins without issue.
 
 For pin pairs that can be used as differential pairs, the positive pin is shown first, the negative pin is shown last; and they are separated by a slash.
 
 Note that pair-capable pins don't *have* to be used as pairs, they can also be used as two single-ended pins.
+
 In case of using a clock-input-capable pair as 2 regular pins, the positive pin of the pair can be used as a single-ended clock input.
 
 #### Clock-input-capable differential PIO pairs (6 pairs, 12 pins)
@@ -123,9 +121,9 @@ Two other considerations are far less important, but can guide the mapping choic
 one choice over a different choice:
 
 * While our design will not use differential signaling, it is somewhat nice if P/N pairs are used for ports that have similar
-  functions and sit next to each other. For example, for our 8 BNC outputs, it is nice if we use 4 differential pin pairs.
+  functions and sit next to each other. For example, for our 8 BNC outputs, we use 4 differential pin pairs.
 * Inside the FPGA, the signals are organized in I/O banks. It is nice to aim to assign similar functions to the same I/O bank,
-  e.g. to have all digital I/O inputs connected to FPGA pins belonging to bank 34.
+  e.g. to have the digital PIOs connected to FPGA pins belonging to bank 34.
 
 However, other considerations such as PCB layout may lead to deviations from these 'nice-to-have' guidelines!
 
@@ -146,9 +144,9 @@ BNC Analog-In #2 | via filter, buffer; range mapped from 0…5V to 0…3.3V | 16
 
 #### Digital output pins via BNC (8 pins)
 
-We want 8 digital outputs; they don't need to be clock-input-capable.
+The 8 digital outputs don't need to be clock-input-capable.
 
-We select these from bank 34.
+We select them from bank 34.
 
 Consecutive odd/even numbered digital outputs are chosen to be positive/negative FPGA pins of a
 differential I/O pair of the FPGA.
@@ -166,9 +164,9 @@ BNC Digital-Out #7 |               | PIO32      (IO_L5N_T0_34)
 
 #### Digital input pins via BNC (8 pins, 5 of which are clock-input-capable)
 
-We want 8 digital inputs, with 5 of them clock-input-capable.
+We will have 8 digital inputs, with 5 of them clock-input-capable.
 
-We get 4 clock-capable inputs from bank 34, and 1 from bank 16.
+We get four clock-capable inputs from bank 34, and one from bank 16.
 
 Consecutive odd/even numbered digital outputs are chosen to be positive/negative FPGA pins of a
 differential I/O pair of the FPGA, except for channel #7. Making the clock-input-capable PIO5
@@ -200,30 +198,30 @@ The Realtek 8211 QFN package footprint is shown below.
 
 ![Ethernet PHY footprint](images/phy_footprint_60pct.png)
 
-We need 16 I/Os, with one of them clock-capable (RXC).
+We need 16 PIOs, with one of them (RXC) clock-input-capable.
 
-The pin mapping was chosen mostly to give a natural pin order with respect to the pinout of the RTL8211F PHY,
-which should aid routing.
+The pin mapping was chosen mostly to give a somewhat natural pin order with respect to the
+pinout of the RTL8211F PHY, which will hopefully aid routing.
 
-function          | remarks             | proposed pin
------------------ | ------------------- | ----------------------------------
-Ethernet TXC      |                     | PIO6       (IO_L3P_T0_DQS_AD5P_35)
-Ethernet TXCTL    |                     | PIO7       (IO_L6N_T0_VREF_16)
-Ethernet TXD0     |                     | PIO8       (IO_L11N_T1_SRCC_16)
-Ethernet TXD1     |                     | PIO9       (IO_L6P_T0_16)
-Ethernet TXD2     |                     | PIO10      (IO_L7P_T1_AD6P_35)
-Ethernet TXD3     |                     | PIO11      (IO_L3N_T0_DQS_AD5N_35)
-Ethernet MDIO     |                     | PIO12      (IO_L5P_T0_AD13P_35)
-Ethernet MDC      |                     | PIO13      (IO_L6N_T0_VREF_35)
-Ethernet PHYSRSTB |                     | PIO14      (IO_L5N_T0_AD13N_35)
-Ethernet RXC      | clock-input-capable | PIO17      (IO_L9N_T1_DQS_AD7N_35)
-Ethernet RXCTL    |                     | PIO18      (IO_L12P_T1_MRCC_35)
-Ethernet RXD0     |                     | PIO19      (IO_L12N_T1_MRCC_35)
-Ethernet RXD1     |                     | PIO20      (IO_L9P_T1_DQS_AD7P_35)
-Ethernet RXD2     |                     | PIO21      (IO_L10N_T1_AD15N_35)
-Ethernet RXD3     |                     | PIO22      (IO_L10P_T1_AD15P_35)
-Ethernet INTB     |                     | PIO23      (IO_L19N_T3_VREF_35)
- 
+function               | remarks             | proposed pin
+---------------------- | ------------------- | ----------------------------------
+Ethernet PHY, TXC      |                     | PIO6       (IO_L3P_T0_DQS_AD5P_35)
+Ethernet PHY, TXCTL    |                     | PIO7       (IO_L6N_T0_VREF_16)
+Ethernet PHY, TXD0     |                     | PIO8       (IO_L11N_T1_SRCC_16)
+Ethernet PHY, TXD1     |                     | PIO9       (IO_L6P_T0_16)
+Ethernet PHY, TXD2     |                     | PIO10      (IO_L7P_T1_AD6P_35)
+Ethernet PHY, TXD3     |                     | PIO11      (IO_L3N_T0_DQS_AD5N_35)
+Ethernet PHY, MDIO     |                     | PIO12      (IO_L5P_T0_AD13P_35)
+Ethernet PHY, MDC      |                     | PIO13      (IO_L6N_T0_VREF_35)
+Ethernet PHY, PHYSRSTB |                     | PIO14      (IO_L5N_T0_AD13N_35)
+Ethernet PHY, RXC      | clock-input-capable | PIO17      (IO_L9N_T1_DQS_AD7N_35)
+Ethernet PHY, RXCTL    |                     | PIO18      (IO_L12P_T1_MRCC_35)
+Ethernet PHY, RXD0     |                     | PIO19      (IO_L12N_T1_MRCC_35)
+Ethernet PHY, RXD1     |                     | PIO20      (IO_L9P_T1_DQS_AD7P_35)
+Ethernet PHY, RXD2     |                     | PIO21      (IO_L10N_T1_AD15N_35)
+Ethernet PHY, RXD3     |                     | PIO22      (IO_L10P_T1_AD15P_35)
+Ethernet PHY, INTB     |                     | PIO23      (IO_L19N_T3_VREF_35)
+
 #### Digilent PMOD connector (8 pins, no special requirements)
 
 The PMOD connector is shown below. Note the pin numbering of the signal pins.
@@ -232,7 +230,7 @@ The PMOD connector is shown below. Note the pin numbering of the signal pins.
 
 The PMOD standard is documented by Digilent in the [PMOD Interface Specification, version 1.2.0](https://reference.digilentinc.com/_media/reference/pmod/pmod-interface-specification-1_2_0.pdf).
 
-We need 8 I/Os, with no requirements on clock capability.
+We need 8 PIOs, with no requirements on clock capability.
 
 These are the leftover differential pair pins, coming from banks 34 and 35.
 
@@ -263,30 +261,30 @@ Mapping proposal — physical layout
 ----------------------------------
 
 ```
-                                              +------------------------+
-                      PMOD:pin2      rp1n -<>-|  1 (35)        (34) 48 |-<-- cp6n   BNC:DIGIN-Ch1
-                      PMOD:pin1      rp1p -<>-|  2 (35)        (34) 47 |-<-- cp6p   BNC:DIGIN-Ch0 (clock-input-capable)
-(clock-input-capable) BNC:REFLCK-IN   c7p -->-|  3 (16)        (34) 46 |-<-- cp5p   BNC:DIGIN-Ch2 (clock-input-capable)
-                      (unused)       rp4n x---|  4 (35)        (34) 45 |---x (s)    (unused)
-(clock-input-capable) BNC:DIGIN-Ch7  cp1p -->-|  5 (16)        (34) 44 |-<>- rp14p  PMOD:pin3
-                      PHY:TXC        rp2p -<--|  6 (35)        (34) 43 |-<-- cp5n   BNC:DIGIN-Ch3
-                      PHY:TXCTL      rp3n -<--|  7 (16)        (34) 42 |-<>- rp14n  PMOD:pin4
-                      PHY:TXD0       cp1n -<--|  8 (16)        (34) 41 |-<>- rp13p  PMOD:pin7
-                      PHY:TXD1       rp3p -<--|  9 (16)        (34) 40 |---x cp3n   (unused)
-                      PHY:TXD2       rp4p -<--| 10 (35)        (34) 39 |-<>- rp13n  PMOD:pin8
-                      PHY:TXD3       rp2n -<--| 11 (35)        (34) 38 |-<-- cp4p   BNC:DIGIN-Ch4 (clock-input-capable)
-                      PHY:MDIO       rp5p -<>-| 12 (35)        (34) 37 |-<-- cp4n   BNC:DIGIN Ch5
-                      PHY:MDC         (s) -<--| 13 (35)        (34) 36 |-<-- cp3p   BNC:DIGIN-Ch6 (clock-input-capable)
-                      PHY:PHYRSTB    rp5n -<--| 14 (35)        (34) 35 |-<>- rp12p  PMOD:pin9
-                      BNC:ADC-Ch0   (adc) ->--| 15 analog-in   (34) 34 |-<>- rp12n  PMOD:pin10
-                      BNC:ADC-Ch1   (adc) ->--| 16 analog-in   (34) 33 |-->- rp11p  BNC:DIGOUT-Ch6
-                      PHY:INTB       rp6n ->--| 17 (35)        (34) 32 |-->- rp11n  BNC:DIGOUT-Ch7
-(clock-input-capable) PHY:RXC        cp2p ->--| 18 (35)        (34) 31 |-->- rp10n  BNC:DIGOUT-Ch5
-                      PHY:RXCTL      cp2n ->--| 19 (35)        (34) 30 |-->- rp9n   BNC:DIGOUT-Ch3
-                      PHY:RXD0       rp6p ->--| 20 (35)        (34) 29 |-->- rp10p  BNC:DIGOUT-Ch4
-                      PHY:RXD1       rp7n ->--| 21 (35)        (34) 28 |-->- rp9p   BNC:DIGOUT-Ch2
-                      PHY:RXD2       rp7p ->--| 22 (35)        (34) 27 |-->- rp8n   BNC:DIGOUT-Ch1
-                      PHY:RXD3        (s) ->--| 23 (35)        (34) 26 |-->- rp8p   BNC:DIGOUT-Ch0
-                      VU                  ----| 24 power     ground 25 |---         GND
-                                              +------------------------+
+                                   +------------------------+
+           PMOD:pin2      rp1n -<>-|  1 (35)        (34) 48 |-<-- cp6n   BNC:DIGIN-Ch1
+           PMOD:pin1      rp1p -<>-|  2 (35)        (34) 47 |-<-- cp6p   BNC:DIGIN-Ch0 (clock-in)
+(clock-in) BNC:REFLCK-IN   c7p -->-|  3 (16)        (34) 46 |-<-- cp5p   BNC:DIGIN-Ch2 (clock-in)
+           (unused)       rp4n x---|  4 (35)        (34) 45 |---x (s)    (unused)
+(clock-in) BNC:DIGIN-Ch7  cp1p -->-|  5 (16)        (34) 44 |-<>- rp14p  PMOD:pin3
+           PHY:TXC        rp2p -<--|  6 (35)        (34) 43 |-<-- cp5n   BNC:DIGIN-Ch3
+           PHY:TXCTL      rp3n -<--|  7 (16)        (34) 42 |-<>- rp14n  PMOD:pin4
+           PHY:TXD0       cp1n -<--|  8 (16)        (34) 41 |-<>- rp13p  PMOD:pin7
+           PHY:TXD1       rp3p -<--|  9 (16)        (34) 40 |---x cp3n   (unused)
+           PHY:TXD2       rp4p -<--| 10 (35)        (34) 39 |-<>- rp13n  PMOD:pin8
+           PHY:TXD3       rp2n -<--| 11 (35)        (34) 38 |-<-- cp4p   BNC:DIGIN-Ch4 (clock-in)
+           PHY:MDIO       rp5p -<>-| 12 (35)        (34) 37 |-<-- cp4n   BNC:DIGIN Ch5
+           PHY:MDC         (s) -<--| 13 (35)        (34) 36 |-<-- cp3p   BNC:DIGIN-Ch6 (clock-in)
+           PHY:PHYRSTB    rp5n -<--| 14 (35)        (34) 35 |-<>- rp12p  PMOD:pin9
+           BNC:ADC-Ch0   (adc) ->--| 15 analog-in   (34) 34 |-<>- rp12n  PMOD:pin10
+           BNC:ADC-Ch1   (adc) ->--| 16 analog-in   (34) 33 |-->- rp11p  BNC:DIGOUT-Ch6
+           PHY:INTB       rp6n ->--| 17 (35)        (34) 32 |-->- rp11n  BNC:DIGOUT-Ch7
+(clock-in) PHY:RXC        cp2p ->--| 18 (35)        (34) 31 |-->- rp10n  BNC:DIGOUT-Ch5
+           PHY:RXCTL      cp2n ->--| 19 (35)        (34) 30 |-->- rp9n   BNC:DIGOUT-Ch3
+           PHY:RXD0       rp6p ->--| 20 (35)        (34) 29 |-->- rp10p  BNC:DIGOUT-Ch4
+           PHY:RXD1       rp7n ->--| 21 (35)        (34) 28 |-->- rp9p   BNC:DIGOUT-Ch2
+           PHY:RXD2       rp7p ->--| 22 (35)        (34) 27 |-->- rp8n   BNC:DIGOUT-Ch1
+           PHY:RXD3        (s) ->--| 23 (35)        (34) 26 |-->- rp8p   BNC:DIGOUT-Ch0
+           VU                  ----| 24 power     ground 25 |----        GND
+                                   +------------------------+
 ```
