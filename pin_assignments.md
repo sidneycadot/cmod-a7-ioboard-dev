@@ -7,7 +7,7 @@ Revision 2, 2020-07-03 (SC).
 Introduction
 ------------
 
-For pin numbering of the CMOD-A7 module, see the image in digilent's Reference Guide:
+For pin numbering of the CMOD-A7 module, see the image in Digilent's Reference Guide:
 
 https://reference.digilentinc.com/_media/cmod_a7/cmoda7_b_dip.png
 
@@ -226,9 +226,11 @@ Ethernet INTB     |                     | PIO23      (IO_L19N_T3_VREF_35)
  
 #### Digilent PMOD connector (8 pins, no special requirements)
 
-The PMOD connector is shown below. Note the pin numbering.
+The PMOD connector is shown below. Note the pin numbering of the signal pins.
 
 ![PMOD connector](images/pmod_connector.png)
+
+The PMOD standard is documented by Digilent in the [PMOD Interface Specification, version 1.2.0](https://reference.digilentinc.com/_media/reference/pmod/pmod-interface-specification-1_2_0.pdf).
 
 We need 8 I/Os, with no requirements on clock capability.
 
