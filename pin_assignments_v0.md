@@ -6,7 +6,9 @@ For pin numbering of the CMOD-A7 module, see the image in digilent's Reference G
 
 https://reference.digilentinc.com/_media/cmod_a7/cmoda7_b_dip.png
 
-![CMOD A7 pinout](cmoda7_b_dip_small.png)
+A reduced-size version of this image is shown below:
+
+![CMOD A7 pinout](cmoda7_b_dip_25pct.png)
 
 The DIP module has 48 pins.
 
