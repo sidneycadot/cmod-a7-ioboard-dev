@@ -276,15 +276,24 @@ Mapping proposal — physical layout
            PHY:MDIO       rp5p -<>-| 12 (35)        (34) 37 |-<-- cp4n   BNC:DIGIN Ch5
            PHY:MDC         (s) -<--| 13 (35)        (34) 36 |-<-- cp3p   BNC:DIGIN-Ch6 (clock-in)
            PHY:PHYRSTB    rp5n -<--| 14 (35)        (34) 35 |-<>- rp12p  PMOD:pin9
-           BNC:ADC-Ch0   (adc) ->--| 15 analog-in   (34) 34 |-<>- rp12n  PMOD:pin10
-           BNC:ADC-Ch1   (adc) ->--| 16 analog-in   (34) 33 |-->- rp11p  BNC:DIGOUT-Ch6
-           PHY:INTB       rp6n ->--| 17 (35)        (34) 32 |-->- rp11n  BNC:DIGOUT-Ch7
-(clock-in) PHY:RXC        cp2p ->--| 18 (35)        (34) 31 |-->- rp10n  BNC:DIGOUT-Ch5
-           PHY:RXCTL      cp2n ->--| 19 (35)        (34) 30 |-->- rp9n   BNC:DIGOUT-Ch3
-           PHY:RXD0       rp6p ->--| 20 (35)        (34) 29 |-->- rp10p  BNC:DIGOUT-Ch4
-           PHY:RXD1       rp7n ->--| 21 (35)        (34) 28 |-->- rp9p   BNC:DIGOUT-Ch2
-           PHY:RXD2       rp7p ->--| 22 (35)        (34) 27 |-->- rp8n   BNC:DIGOUT-Ch1
-           PHY:RXD3        (s) ->--| 23 (35)        (34) 26 |-->- rp8p   BNC:DIGOUT-Ch0
+           BNC:ADC-Ch0   (adc) -->-| 15 analog-in   (34) 34 |-<>- rp12n  PMOD:pin10
+           BNC:ADC-Ch1   (adc) -->-| 16 analog-in   (34) 33 |-->- rp11p  BNC:DIGOUT-Ch6
+           PHY:INTB       rp6n -->-| 17 (35)        (34) 32 |-->- rp11n  BNC:DIGOUT-Ch7
+(clock-in) PHY:RXC        cp2p -->-| 18 (35)        (34) 31 |-->- rp10n  BNC:DIGOUT-Ch5
+           PHY:RXCTL      cp2n -->-| 19 (35)        (34) 30 |-->- rp9n   BNC:DIGOUT-Ch3
+           PHY:RXD0       rp6p -->-| 20 (35)        (34) 29 |-->- rp10p  BNC:DIGOUT-Ch4
+           PHY:RXD1       rp7n -->-| 21 (35)        (34) 28 |-->- rp9p   BNC:DIGOUT-Ch2
+           PHY:RXD2       rp7p -->-| 22 (35)        (34) 27 |-->- rp8n   BNC:DIGOUT-Ch1
+           PHY:RXD3        (s) -->-| 23 (35)        (34) 26 |-->- rp8p   BNC:DIGOUT-Ch0
            VU                  ----| 24 power     ground 25 |----        GND
                                    +------------------------+
+
+LEGEND:
+
+rp<i>p  regular (non clock-input-capable) pair #i, positive pin
+rp<i>n  regular (non clock-input-capable) pair #i, negative pin
+cp<i>p  clock-input-capable pair #i, positive pin
+cp<i>n  clock-input-capable pair #i, negative pin
+c<i>p   clock-input-capable pin, unpaired
+(s)     single-ended pin (unpaired)
 ```
