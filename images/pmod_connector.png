@@ -18,15 +18,15 @@
 <meta name="robots" content="index,follow"/>
 <link rel="search" type="application/opensearchdescription+xml" href="https://reference.digilentinc.com/lib/exe/opensearch.php" title="Reference.Digilentinc"/>
 <link rel="start" href="https://reference.digilentinc.com/"/>
-<link rel="contents" href="https://reference.digilentinc.com/start?do=index" title="Sitemap"/>
+<link rel="contents" href="https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual?do=index" title="Sitemap"/>
 <link rel="manifest" href="https://reference.digilentinc.com/lib/exe/manifest.php"/>
 <link rel="alternate" type="application/rss+xml" title="Recent Changes" href="https://reference.digilentinc.com/feed.php"/>
 <link rel="alternate" type="application/rss+xml" title="Current namespace" href="https://reference.digilentinc.com/feed.php?mode=list&amp;ns="/>
-<link rel="alternate" type="text/html" title="Plain HTML" href="https://reference.digilentinc.com/_export/xhtml/"/>
-<link rel="alternate" type="text/plain" title="Wiki Markup" href="https://reference.digilentinc.com/_export/raw/"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="https://reference.digilentinc.com/_export/xhtml/reference/programmable-logic/cmod-a7/reference-manual"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="https://reference.digilentinc.com/_export/raw/reference/programmable-logic/cmod-a7/reference-manual"/>
 <link rel="stylesheet" type="text/css" href="https://reference.digilentinc.com/lib/exe/css.php?t=digilent-tpl&amp;tseed=c8cf2ac3787ff7ed27817143b30168fc"/>
 <!--[if gte IE 9]><!-->
-<script type="text/javascript">/*<![CDATA[*/var NS='';var JSINFO = {"id":"","namespace":"","ACT":"show","useHeadingNavigation":1,"useHeadingContent":1};
+<script type="text/javascript">/*<![CDATA[*/var NS='';var JSINFO = {"id":"reference:programmable-logic:cmod-a7:reference-manual","namespace":"","ACT":"show","useHeadingNavigation":1,"useHeadingContent":1};
 /*!]]>*/</script>
 <script type="text/javascript" charset="utf-8" src="https://reference.digilentinc.com/lib/exe/jquery.php?tseed=23f888679b4f1dc26eef34902aca964f"></script>
 <script type="text/javascript" charset="utf-8" src="https://reference.digilentinc.com/lib/exe/js.php?t=digilent-tpl&amp;tseed=c8cf2ac3787ff7ed27817143b30168fc"></script>
@@ -64,7 +64,7 @@
                                     </div></div>
             </div><!-- /.content -->
             <div class="btn-group">
-                <a class="btn btn-default" href="/doku.php/" class="btn">&larr;  </a>
+                <a class="btn btn-default" href="/doku.php/reference:programmable-logic:cmod-a7:reference-manual" class="btn">&larr;  reference:programmable-logic:cmod-a7:reference-manual</a>
                             </div>
             </div>
 
