@@ -35,14 +35,14 @@ Not all PIO pins are created equal:
 * Some FPGA pins are designed for use as high-performance clock signals.
 * Some FPGA pins can be configured for use as differential pairs.
 
-Below we list all 44 PIO pins, both using their PIO number and their Xilinx I/O pin identifier (e.g. 'PIO3 (IO_L12P_T1_MRCC_16)').
+Below we list all 44 PIO pins, both using their PIO number and their Xilinx I/O pin identifier, for example 'PIO3 (IO_L12P_T1_MRCC_16)'.
 
 We specify whether the pins are 'clock-capable or 'regular' (i.e., non clock-capable). Clock capable pins are those pins for which the Xilinx I/O pin identifier contains either 'MRCC' or 'SRCC'.
 
 For pin pairs that can be used as differential pairs, the positive pin is shown first, the negative pin is shown last; and they
 are separated by a slash.
 
-Note that pair-capable pins don't /have/ to be used as pairs, they can also be used as two single-ended pins.
+Note that pair-capable pins don't *have* to be used as pairs, they can also be used as two single-ended pins.
 In case of using a clock-capable pair as 2 regular pins, the positive pin of the pair can be used as a single-ended clock input.
 
 #### Clock-capable differential PIO pairs (6 pairs, 12 pins)
@@ -233,7 +233,7 @@ PMOD_p10           |                                    | PIO7       (IO_L6N_T0_
 
 #### Unused (spare) pins
 
-function           | remarks | pin
+function           | remarks | unused pin
 ------------------ | ------- | -------------------------------
 (unused)           |         | PIO13      (IO_L6N_T0_VREF_35)
 (unused)           |         | PIO23      (IO_L19N_T3_VREF_35)
