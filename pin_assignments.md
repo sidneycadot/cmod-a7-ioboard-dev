@@ -194,12 +194,14 @@ function          | remarks                                       | proposed pin
 ----------------- | --------------------------------------------- | -------------------------
 BNC RefClock-In   | clock-capable; via AC coupling and comparator | PIO3 (IO_L12P_T1_MRCC_16)
 
-#### Ethernet RGMII (16 pins, 1 of which must be clock-capable)
+#### Ethernet PHY, RGMII (16 pins, one of which must be clock-capable)
 
 We need 16 I/Os, with one of them clock-capable (RXC).
 
 The pin mapping was chosen mostly to give a natural pin order with respect to the pinout of the RTL8211F PHY,
 which should aid routing.
+
+![Ethernet PHY footprint](images/phy_footprint.png)
 
 function          | remarks             | proposed pin
 ----------------- | ------------------- | ----------------------------------
@@ -223,6 +225,8 @@ Ethernet INTB     |                     | PIO23      (IO_L19N_T3_VREF_35)
 #### Digilent PMOD connector (8 pins, no special requirements)
 
 We need 8 I/Os, with no requirements on clock capability.
+
+![PMOD pin numbering](images/pmod_connector.png)
 
 These are the leftover differential pair pins, coming from banks 34 and 35.
 

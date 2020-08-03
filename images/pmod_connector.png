@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xml:lang="en" lang="en" dir="ltr" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+    <title>
+        basys3-pmod_connector.png        [Reference.Digilentinc]
+    </title>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+
+<!-- NOTE: dokuwiki's php css compressor doesn't play nice with media queries -->
+<link href="https://reference.digilentinc.com/lib/tpl/digilent-tpl/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://reference.digilentinc.com/lib/tpl/digilent-tpl/css/print.css" rel="stylesheet" media="print">
+<script src="https://reference.digilentinc.com/lib/tpl/digilent-tpl/js/iconic.min.js" type="text/javascript" ></script>
+<script src="https://reference.digilentinc.com/lib/tpl/digilent-tpl/js/respond.min.js" type="text/javascript"></script>
+
+<meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="index,follow"/>
+<link rel="search" type="application/opensearchdescription+xml" href="https://reference.digilentinc.com/lib/exe/opensearch.php" title="Reference.Digilentinc"/>
+<link rel="start" href="https://reference.digilentinc.com/"/>
+<link rel="contents" href="https://reference.digilentinc.com/start?do=index" title="Sitemap"/>
+<link rel="manifest" href="https://reference.digilentinc.com/lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="https://reference.digilentinc.com/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="https://reference.digilentinc.com/feed.php?mode=list&amp;ns="/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="https://reference.digilentinc.com/_export/xhtml/"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="https://reference.digilentinc.com/_export/raw/"/>
+<link rel="stylesheet" type="text/css" href="https://reference.digilentinc.com/lib/exe/css.php?t=digilent-tpl&amp;tseed=c8cf2ac3787ff7ed27817143b30168fc"/>
+<!--[if gte IE 9]><!-->
+<script type="text/javascript">/*<![CDATA[*/var NS='';var JSINFO = {"id":"","namespace":"","ACT":"show","useHeadingNavigation":1,"useHeadingContent":1};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="https://reference.digilentinc.com/lib/exe/jquery.php?tseed=23f888679b4f1dc26eef34902aca964f"></script>
+<script type="text/javascript" charset="utf-8" src="https://reference.digilentinc.com/lib/exe/js.php?t=digilent-tpl&amp;tseed=c8cf2ac3787ff7ed27817143b30168fc"></script>
+<script type="text/x-mathjax-config">/*<![CDATA[*/MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+        displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+        processEscapes: true
+    }
+});
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML.js"></script>
+<!--<![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="shortcut icon" href="https://reference.digilentinc.com/lib/tpl/digilent-tpl/images/favicon.ico" />
+<link rel="apple-touch-icon" href="https://reference.digilentinc.com/lib/tpl/digilent-tpl/images/apple-touch-icon.png" />
+</head>
+<body>
+    <div id="dokuwiki__detail" class="dokuwiki container">
+        <div class="row"></div>
+
+                <h1>basys3-pmod_connector.png</h1>
+            <div class="content row">
+                <div class="col-sm-9">
+                    <a href="https://reference.digilentinc.com/_media/basys3-pmod_connector.png?cache=" title="View original file"><img width="682" height="189" class="img_detail" alt="basys3-pmod_connector.png" title="basys3-pmod_connector.png" src="https://reference.digilentinc.com/_media/basys3-pmod_connector.png?cache=&amp;w=682&amp;h=189&amp;tok=81c069"/></a>                </div>
+
+                <div class="img_detail col-sm-3"><div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">basys3-pmod_connector.png</h3>
+                    </div>
+
+                    <div class="details panel-body">
+                        <p><span class="item-label "Date:">Date::</span> <b>2014/08/05 17:06</b><br /><span class="item-label "Filename:">Filename::</span> <b>basys3-pmod_connector.png</b><br /><span class="item-label "Format:">Format::</span> <b>PNG</b><br /><span class="item-label "Size:">Size::</span> <b>14KB</b><br /><span class="item-label "Width:">Width::</span> <b>682px</b><br /><span class="item-label "Height:">Height::</span> <b>189px</b><br /></p>
+                    </div>
+                                    </div></div>
+            </div><!-- /.content -->
+            <div class="btn-group">
+                <a class="btn btn-default" href="/doku.php/" class="btn">&larr;  </a>
+                            </div>
+            </div>
+
+    <script src="https://reference.digilentinc.com/lib/tpl/digilent-tpl/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var jQNew = $.noConflict(true);
+</script>
+<script src="https://reference.digilentinc.com/lib/tpl/digilent-tpl/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="https://reference.digilentinc.com/lib/tpl/digilent-tpl/js/sorttable.js" type="text/javascript"></script>
+<script src="https://reference.digilentinc.com/lib/tpl/digilent-tpl/js/script.js" type="text/javascript"></script>
+</body>
+</html>
+
