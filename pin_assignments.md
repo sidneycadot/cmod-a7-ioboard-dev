@@ -97,7 +97,7 @@ The following interfaces will be implemented:
 * DIGITAL-IN (BNC): 8 pins, 5 of which will be clock-input-capable pins.
 * DIGITAL-OUT (BNC): 8 pins.
 * REFCLOCK-IN (BNC): 1 clock-in capable pin.
-* 16x Ethernet RGMII: 16 pins, 1 of which must be clock-in capable:
+* Ethernet PHY, RGMII: 16 pins, 1 of which must be clock-in capable:
     - 1x TXC
     - 1x TXCTL
     - 4x TXD
