@@ -16,7 +16,7 @@ application in R&D environments where robust digital I/O is required.
 In addition, the I/O board will feature a reference clock input, 2 analog inputs for the 1 MS/s
 on-board ADCs of the FPGA, a gigabit Ethernet connector, and a standard PMOD connector.
 
-The image below shows the pin nunbering of the CMOD-A7 module:
+The image below shows the pin numbering of the CMOD-A7 module:
 
 ![CMOD-A7 pinout](images/cmoda7_b_dip_40pct.png)
 
