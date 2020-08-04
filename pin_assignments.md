@@ -42,7 +42,7 @@ Clock-in capable pins are those pins for which the Xilinx I/O pin identifier con
 
 * Note 1: Regular pins can also be used to lead clock signals into the FPGA, but this is sub-optimal,
           explicitly discouraged by the Xilinx documentation,
-          and requires constraint file overrides to override warnings in Vivado.
+          and requires constraint file directives to override warnings in Vivado.
 * Note 2: Clock signals routed from the inside of the FPGA to the outside can be routed over 'regular' pins without issue.
 
 For pin pairs that can be used as differential pairs, the positive pin is shown first, the negative pin is shown last;
@@ -93,22 +93,22 @@ External interfaces
 
 The following interfaces will be implemented:
 
-* 2x ANALOG-IN (BNC)   --- Special pins 15 and 16 of the CMOD-A7 module; analog inputs, not PIOs
-* 8x DIGITAL-IN (BNC)  --- 5 of which will be clock-input-capable pins
-* 8x DIGITAL-OUT (BNC)
-* 1x REFCLOCK-IN (BNC) --- must be a clock-in capable pin
-* 16x Ethernet RGMII   --- must have 1 clock-in capable pin
+* ANALOG-IN (BNC): 2 special pins 15 and 16 of the CMOD-A7 module; analog inputs, not PIOs.
+* DIGITAL-IN (BNC): 8 pins, 5 of which will be clock-input-capable pins.
+* DIGITAL-OUT (BNC): 8 pins.
+* REFCLOCK-IN (BNC): 1 clock-in capable pin.
+* 16x Ethernet RGMII: 16 pins, 1 of which must be clock-in capable:
     - 1x TXC
     - 1x TXCTL
     - 4x TXD
-    - 1x RXC           --- must be a clock-in capable pin
+    - 1x RXC; must be a clock-in capable pin.
     - 1x RXCTL
     - 4x RXD
-    - 1x MDC           --- pseudo-clock output
+    - 1x MDC; pseudo-clock output.
     - 1x MDIO
     - 1x RESET
     - 1x INTERRUPT
-* 8x PMOD              --- no special requirements.
+* PMOD: 8 pins, no special requirements.
 
 The grand total for PIO pins: 41 pins used for the interfaces, 7 of which must be clock-in capable.
 
