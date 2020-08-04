@@ -163,7 +163,7 @@ BNC Digital-Out #5 |         | PIO31  (IO_L3N_T0_DQS_34)
 BNC Digital-Out #6 |         | PIO33  (IO_L5P_T0_34)
 BNC Digital-Out #7 |         | PIO32  (IO_L5N_T0_34)
 
-#### Digital input pins via BNC (8 pins, 5 of which are clock-in capable)
+#### Digital input pins via BNC (8 pins, 5 of which will be clock-in capable)
 
 We will have 8 digital inputs, with 5 of them clock-in capable.
 
@@ -202,7 +202,7 @@ The Realtek 8211 QFN package pinout is shown below.
 We need 16 PIOs, with one of them (RXC) clock-in capable.
 
 The pin mapping was chosen mostly to give a somewhat natural pin order with respect to the
-pinout of the RTL8211F PHY, which will hopefully aid routing.
+pinout of the RTL8211F PHY shown above, which will hopefully aid routing.
 
 function               | remarks          | proposed pin
 ---------------------- | ---------------- | ------------------------------
@@ -237,7 +237,7 @@ These are the leftover differential pair pins, coming from banks 34 and 35.
 
 Consecutive IOs are chosen to be positive/negative FPGA pins of a differential I/O pair of the FPGA.
 
-**TO BE DECIDED: will we give the PMOD connectors a standard 200 Ohm series resistor? This is safer, and we already have BNCs for high-quality signals. So probably yes.**
+**TO BE DECIDED: will we give the PMOD connectors a standard 200 Ohm series resistor, as suggested in Section 2 of the Digilent PMOD specification? This is safer, and we already have BNCs for high-quality signals. So probably yes.**
 
 function          | remarks | proposed pin
 ----------------- | ------- | ---------------------------
