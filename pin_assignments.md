@@ -7,11 +7,18 @@ Revision 2.0.4, 2020-07-04 (SC).
 Introduction
 ------------
 
-The image below shows the pin numbering of the CMOD-A7 development board:
+The [Digilent CMOD-A7](https://store.digilentinc.com/cmod-a7-breadboardable-artix-7-fpga-module/) is an inexpensive
+FPGA development board built around a Xilinx Artix A7 FPGA. It is implemented as a breadboard-friendly 48-pins DIP module.
+
+We plan to design and manufacture an Open Hardware I/O board for the CMOD-A7 that will allow its
+application in R&D environments where robust digital I/O is required.
+
+In addition, the I/O board will feature a reference clock input, 2 analog inputs for the 1 MS/s
+on-board ADCs of the FPGA, a gigabit Ethernet connector, and a standard PMOD connector.
+
+The image below shows the pin nunbering of the CMOD-A7 module:
 
 ![CMOD-A7 pinout](images/cmoda7_b_dip_40pct.png)
-
-The module is a DIP package with 48 pins.
 
 Pins 15 and 16 are the analog input channels.
 
