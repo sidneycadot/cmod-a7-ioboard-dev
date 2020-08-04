@@ -93,11 +93,11 @@ External interfaces
 
 The following interfaces will be implemented:
 
-* ANALOG-IN (BNC): 2 special pins 15 and 16 of the CMOD-A7 module; analog inputs, not PIOs.
-* DIGITAL-IN (BNC): 8 pins, 5 of which will be clock-input-capable pins.
-* DIGITAL-OUT (BNC): 8 pins.
-* REFCLOCK-IN (BNC): 1 clock-in capable pin.
-* Ethernet PHY, RGMII: 16 pins, 1 of which must be clock-in capable:
+* **ANALOG-IN (BNC)**: 2 special pins 15 and 16 of the CMOD-A7 module; analog inputs, not PIOs.
+* **DIGITAL-IN (BNC)**: 8 pins, 5 of which will be clock-input-capable pins.
+* **DIGITAL-OUT (BNC)**: 8 pins.
+* **REFCLOCK-IN (BNC)**: 1 clock-in capable pin.
+* **Ethernet PHY, RGMII**: 16 pins, 1 of which must be clock-in capable:
     - 1x TXC
     - 1x TXCTL
     - 4x TXD
@@ -108,7 +108,7 @@ The following interfaces will be implemented:
     - 1x MDIO
     - 1x RESET
     - 1x INTERRUPT
-* PMOD: 8 pins, no special requirements.
+* **PMOD**: 8 pins, no special requirements.
 
 The grand total for PIO pins: 41 pins used for the interfaces, 7 of which must be clock-in capable.
 
