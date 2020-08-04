@@ -1,15 +1,15 @@
 
-CMOD A7 I/O board pinout assignment
-===================================
+CMOD-A7 I/O board pin assignment
+================================
 
-Revision 2.0.4, 2020-07-03 (SC).
+Revision 2.0.4, 2020-07-04 (SC).
 
 Introduction
 ------------
 
 The image below shows the pin numbering of the CMOD-A7 development board:
 
-![CMOD A7 pinout](images/cmoda7_b_dip_40pct.png)
+![CMOD-A7 pinout](images/cmoda7_b_dip_40pct.png)
 
 The module is a DIP package with 48 pins.
 
@@ -18,7 +18,7 @@ Pins 15 and 16 are the analog input channels.
 Pin 24 is VU. It can be used as power supply to the CMOD-A7 (in case no USB is connected)
 or as power monitor in case USB is connected.
 
-**TODO**: Figure out if/how we can safely use the CMOD module with USB connected or not connected. See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options).
+**TODO**: Figure out if/how we can safely use the CMOD-A7 module with USB connected or not connected. See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options).
 A possible solution using a Schottky diode is also mentioned there.
 
 Pin 25 is GND. It is a bit unfortunate that we only have a single ground pin, but it will have to do.
@@ -93,7 +93,7 @@ External interfaces
 
 The following interfaces will be implemented:
 
-* 2x ANALOG-IN (BNC)   --- Special pins 15 and 16 of the CMOD module; analog inputs, not PIOs
+* 2x ANALOG-IN (BNC)   --- Special pins 15 and 16 of the CMOD-A7 module; analog inputs, not PIOs
 * 8x DIGITAL-IN (BNC)  --- 5 of which will be clock-input-capable pins
 * 8x DIGITAL-OUT (BNC)
 * 1x REFCLOCK-IN (BNC) --- must be a clock-in capable pin
