@@ -256,7 +256,8 @@ These are selected from the leftover differential pin pairs in banks 34 and 35.
 
 Consecutive IOs are chosen to be positive/negative FPGA pins of a differential I/O pair of the FPGA.
 
-**TO BE DECIDED: will we give the PMOD connectors a standard 200 Ohm series resistor, as suggested in Section 2 of the Digilent PMOD specification? This is safer, and we already have BNCs for high-speed signals. So probably yes.**
+**TO BE DECIDED: will we give the PMOD connectors a standard 200 Ohm series resistor, as suggested in Section 2 of the Digilent PMOD specification?
+This is safer, and we already have BNCs for high-speed signals. So probably yes.**
 
 function          | pin                        | remarks
 ----------------- | -------------------------- | ----------
@@ -284,7 +285,7 @@ Physical layout
                                   +------------------------+
            PMOD:pin2      rp1n <->|  1 (35)        (34) 48 |<-- cp6n   BNC:DIGIN-Ch1
            PMOD:pin1      rp1p <->|  2 (35)        (34) 47 |<-- cp6p   BNC:DIGIN-Ch0 (clock-in)
-(clock-in) BNC:REFLCK-IN   c7p -->|  3 (16)        (34) 46 |<-- cp5p   BNC:DIGIN-Ch2 (clock-in)
+(clock-in) BNC:REFCLK-IN   c7p -->|  3 (16)        (34) 46 |<-- cp5p   BNC:DIGIN-Ch2 (clock-in)
            (unused)       rp4n  x-|  4 (35)        (34) 45 |-x  (s)    (unused)
 (clock-in) BNC:DIGIN-Ch7  cp1p -->|  5 (16)        (34) 44 |<-> rp14p  PMOD:pin3
            PHY:TXC        rp2p <--|  6 (35)        (34) 43 |<-- cp5n   BNC:DIGIN-Ch3
