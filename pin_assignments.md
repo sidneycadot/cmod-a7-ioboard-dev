@@ -237,9 +237,9 @@ Ethernet PHY, PHYSRSTB | PIO14 (IO_L5N_T0_AD13N_35)    |
 Ethernet PHY, INTB     | PIO17 (IO_L9N_T1_DQS_AD7N_35) |
 Ethernet PHY, RXC      | PIO18 (IO_L12P_T1_MRCC_35)    | clock-in capable
 Ethernet PHY, RXCTL    | PIO19 (IO_L12N_T1_MRCC_35)    |
-Ethernet PHY, RXD1     | PIO20 (IO_L9P_T1_DQS_AD7P_35) |
-Ethernet PHY, RXD2     | PIO21 (IO_L10N_T1_AD15N_35)   |
-Ethernet PHY, RXD3     | PIO22 (IO_L10P_T1_AD15P_35)   |
+Ethernet PHY, RXD0     | PIO20 (IO_L9P_T1_DQS_AD7P_35) |
+Ethernet PHY, RXD1     | PIO21 (IO_L10N_T1_AD15N_35)   |
+Ethernet PHY, RXD2     | PIO22 (IO_L10P_T1_AD15P_35)   |
 Ethernet PHY, RXD3     | PIO23 (IO_L19N_T3_VREF_35)    |
 
 #### Digilent PMOD connector (8 pins, no special requirements)
