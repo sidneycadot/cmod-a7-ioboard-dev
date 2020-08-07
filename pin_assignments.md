@@ -2,7 +2,7 @@
 CMOD-A7 I/O board pin assignment
 ================================
 
-Revision 2.0.5, 2020-08-06 (SC).
+Revision 2.0.6, 2020-08-07 (SC).
 
 Introduction
 ------------
@@ -20,9 +20,9 @@ The image below shows the pin numbering of the CMOD-A7 module:
 
 ![CMOD-A7 pinout](images/cmoda7_b_dip_40pct.png)
 
-Pins 15 and 16 are the analog input channels. The voltage input range is 0..3.3V, which is scaled to the 0..1V range supported by the FPGA's ADCs.
+Pins 15 and 16 are the analog input channels. The voltage input range is 0..3.3V, which is scaled to the 0..1V range expected by the FPGA's ADCs.
 
-Pin 24 is VU. It can be used as power supply to the CMOD-A7 (in case no USB is connected) or as power monitor in case USB is connected.
+Pin 24 is VU. It can be used as power supply to the CMOD-A7 (in case no USB is connected) or as a USB voltage monitor in case USB is connected.
 
 **TODO**: Make sure we can safely use the CMOD-A7 module with USB either connected or disconnected. See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options). A possible solution using a Schottky diode is mentioned there.
 
@@ -54,7 +54,7 @@ Note that pair-capable pins don't *have* to be used as pairs, they can also be u
 
 In case of using a clock-in capable pair as 2 regular pins, the positive pin of the pair can be used as a single-ended clock input.
 
-#### Clock-in capable differential PIO pairs (6 pairs, 12 pins)
+### Clock-in capable differential PIO pairs (6 pairs, 12 pins)
 
 positive pin (Xilinx name) | negative pin (Xilinx name) | remark
 -------------------------- | -------------------------- | ----------------
@@ -65,15 +65,15 @@ PIO38 (IO_L11P_T1_SRCC_34) | PIO37 (IO_L11N_T1_SRCC_34) | clock-in capable
 PIO46 (IO_L13P_T2_MRCC_34) | PIO43 (IO_L13N_T2_MRCC_34) | clock-in capable
 PIO47 (IO_L14P_T2_SRCC_34) | PIO48 (IO_L14N_T2_SRCC_34) | clock-in capable
 
-#### Clock-in capable single-ended PIO pins (1 pin)
+### Clock-in capable single-ended PIO pins (1 pin)
 
-single_ended pin (Xlinx name) | remark
------------------------------ | ----------------
-PIO3 (IO_L12P_T1_MRCC_16)     | clock-in capable
+single-ended pin (Xilinx name) | remark
+------------------------------ | ----------------
+PIO3 (IO_L12P_T1_MRCC_16)      | clock-in capable
 
 The corresponding negative pin exists on the FPGA but it is not exposed as a DIP pin; it is used to drive one of the CMOD-A7 LEDs.
 
-#### Regular (not clock-in capable) differential PIO pairs (14 pairs, 28 pins)
+### Regular (not clock-in capable) differential PIO pairs (14 pairs, 28 pins)
 
 positive pin (Xilinx name)    | negative pin (Xilinx name)    | remark
 ----------------------------- | ----------------------------- | ------
@@ -92,13 +92,13 @@ PIO35 (IO_L6P_T0_34)          | PIO34 (IO_L6N_T0_VREF_34)     |
 PIO41 (IO_L16P_T2_34)         | PIO39 (IO_L16N_T2_34)         |
 PIO44 (IO_L9P_T1_DQS_34)      | PIO42 (IO_L9N_T1_DQS_34)      |
 
-#### Regular (not clock-in capable) single-ended PIO pins (3 pins)
+### Regular (not clock-in capable) single-ended PIO pins (3 pins)
 
-single_ended pin (Xlinx name) | remark
------------------------------ | ------
-PIO13  (IO_L6N_T0_VREF_35)    |
-PIO23  (IO_L19N_T3_VREF_35)   |
-PIO45  (IO_L19P_T3_34)        |
+single-ended pin (Xilinx name) | remark
+------------------------------ | ------
+PIO13  (IO_L6N_T0_VREF_35)     |
+PIO23  (IO_L19N_T3_VREF_35)    |
+PIO45  (IO_L19P_T3_34)         |
 
 External interfaces
 -------------------
@@ -137,8 +137,8 @@ Mapping of available PIOs to interfaces
 The primary consideration with regard to pin assignment will be the assignment of clock-in capable pins.
 Seven clock-in capable pins are available on the CMOD-A7, and all seven of them will be explicitly used.
 
-Two other considerations are far less important, but can guide the mapping choice in case there is no clear reason to prefer
-one choice over a different choice:
+Two other considerations are far less important, but can guide the mapping choice in case there is
+no clear reason to prefer one choice over another:
 
 * While our design will not use differential signaling, it is somewhat nice if P/N pairs are used for ports that have similar
   functions and sit next to each other. For example, for our 8 BNC outputs, we use 4 differential pin pairs.
@@ -153,7 +153,7 @@ Pin mapping
 The following proposed mapping is not set in stone yet.
 It can be revised if considerations such as PCB layout require it.
 
-#### Analog input (2 pins)
+### Analog input (2 pins)
 
 The analog input pins are fixed by the CMOD-A7 design to pins 15 and 16 of the DIP module.
 
@@ -162,7 +162,7 @@ function         | pin | remarks
 BNC Analog-In #0 |  15 | via filter, buffer; range mapped from 0-5V to 0-3.3V.
 BNC Analog-In #1 |  16 | via filter, buffer; range mapped from 0-5V to 0-3.3V.
 
-#### Digital output pins via BNC (8 pins)
+### Digital output pins via BNC (8 pins)
 
 The 8 digital outputs don't need to be clock-in capable.
 
@@ -182,7 +182,7 @@ BNC Digital-Out #5 | PIO31 (IO_L3N_T0_DQS_34) |
 BNC Digital-Out #6 | PIO33 (IO_L5P_T0_34)     |
 BNC Digital-Out #7 | PIO32 (IO_L5N_T0_34)     |
 
-#### Digital input pins via BNC (8 pins, 5 of which will be clock-in capable)
+### Digital input pins via BNC (8 pins, 5 of which will be clock-in capable)
 
 We will have 8 digital inputs, with 5 of them clock-in capable.
 
@@ -212,7 +212,7 @@ function          | pin                       | remarks
 ----------------- | ------------------------- | ---------------------------------------------------
 BNC RefClock-In   | PIO3 (IO_L12P_T1_MRCC_16) | clock-in capable; AC coupled, via comparator to 0V.
 
-#### Ethernet PHY, RGMII (16 pins, one of which must be clock-in capable)
+### Ethernet PHY, RGMII (16 pins, one of which must be clock-in capable)
 
 The Realtek 8211 QFN package pinout is shown below.
 
@@ -221,7 +221,7 @@ The Realtek 8211 QFN package pinout is shown below.
 We need 16 PIOs, with one of them (RXC) clock-in capable.
 
 The pin mapping was chosen mostly to give a somewhat natural pin order with respect to the
-pinout of the RTL8211F PHY shown above, which will hopefully aid routing.
+pinout of the RTL8211F PHY shown above, which will make routing a bit easier.
 
 function               | pin                           | remarks
 ---------------------- | ----------------------------- | ----------------
@@ -242,7 +242,7 @@ Ethernet PHY, RXD1     | PIO21 (IO_L10N_T1_AD15N_35)   |
 Ethernet PHY, RXD2     | PIO22 (IO_L10P_T1_AD15P_35)   |
 Ethernet PHY, RXD3     | PIO23 (IO_L19N_T3_VREF_35)    |
 
-#### Digilent PMOD connector (8 pins, no special requirements)
+### Digilent PMOD connector (8 pins, no special requirements)
 
 The PMOD connector is shown below. Note the pin numbering of the signal pins.
 
@@ -261,14 +261,14 @@ This is safer, and we already have BNCs for high-speed signals. So probably yes.
 
 function          | pin                        | remarks
 ----------------- | -------------------------- | ----------
-PMOD_p1           | PIO2  (IO_L8P_T1_AD14P_35) | first row
-PMOD_p2           | PIO1  (IO_L8N_T1_AD14N_35) | first row
-PMOD_p3           | PIO44 (IO_L9P_T1_DQS_34)   | first row
-PMOD_p4           | PIO42 (IO_L9N_T1_DQS_34)   | first row
-PMOD_p7           | PIO41 (IO_L16P_T2_34)      | second row
-PMOD_p8           | PIO39 (IO_L16N_T2_34)      | second row
-PMOD_p9           | PIO35 (IO_L6P_T0_34)       | second row
-PMOD_p10          | PIO34 (IO_L6N_T0_VREF_34)  | second row
+PMOD_p1           | PIO2  (IO_L8P_T1_AD14P_35) | top row
+PMOD_p2           | PIO1  (IO_L8N_T1_AD14N_35) | top row
+PMOD_p3           | PIO44 (IO_L9P_T1_DQS_34)   | top row
+PMOD_p4           | PIO42 (IO_L9N_T1_DQS_34)   | top row
+PMOD_p7           | PIO41 (IO_L16P_T2_34)      | bottom row
+PMOD_p8           | PIO39 (IO_L16N_T2_34)      | bottom row
+PMOD_p9           | PIO35 (IO_L6P_T0_34)       | bottom row
+PMOD_p10          | PIO34 (IO_L6N_T0_VREF_34)  | bottom row
 
 #### Unused CMOD-A7 pins
 
