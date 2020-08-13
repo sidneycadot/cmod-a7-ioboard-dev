@@ -2,7 +2,7 @@
 CMOD-A7 I/O board pin assignment
 ================================
 
-Revision 2.0.6, 2020-08-07 (SC).
+Revision 2.1.0, 2020-08-13 (SC).
 
 Introduction
 ------------
@@ -113,8 +113,9 @@ DIGITAL-OUT (BNC)    | 8 pins.
 REFCLOCK-IN (BNC)    | 1 clock-in capable pin. Incoming signal is AC-coupled and then compared to 0V.
 Ethernet PHY (RGMII) | 16 pins, 1 of which must be clock-in capable (see below for details).
 PMOD                 | 8 pins, no special requirements.
+HEADER               | 3 pins with neighboring ground pins as a 3x2 standard-pitch pin header.
 
-The grand total for PIO (digital I/O) pins: 41 pins used for the interfaces, 7 of which must be clock-in capable.
+The grand total for PIO (digital I/O) pins: 44 pins used for the interfaces, 7 of which must be clock-in capable.
 
 The Ethernet PHY interface has the following pin requirements:
 
@@ -214,14 +215,16 @@ BNC RefClock-In   | PIO3 (IO_L12P_T1_MRCC_16) | clock-in capable; AC coupled, vi
 
 ### Ethernet PHY, RGMII (16 pins, one of which must be clock-in capable)
 
-The Realtek 8211 QFN package pinout is shown below.
+The board will be equipped with a Microchip [KSZ9131RNX](http://ww1.microchip.com/downloads/en/DeviceDoc/00002841B.pdf) Gigabit ethernet transceiver.
 
-![Ethernet PHY pinout](images/phy_footprint_60pct.png)
+![Ethernet PHY pinout](images/microchip_phy_footprint.png)
 
 We need 16 PIOs, with one of them (RXC) clock-in capable.
 
 The pin mapping was chosen mostly to give a somewhat natural pin order with respect to the
-pinout of the RTL8211F PHY shown above, which will make routing a bit easier.
+pinout of the PHY shown above, which will make routing a bit easier.
+
+**Daniël: feel free to exchange pins here to ease routing or optimize signals, as long as RXC remains connected to PIO18!**
 
 function               | pin                           | remarks
 ---------------------- | ----------------------------- | ----------------
@@ -231,16 +234,33 @@ Ethernet PHY, TXD0     | PIO8  (IO_L11N_T1_SRCC_16)    |
 Ethernet PHY, TXD1     | PIO9  (IO_L6P_T0_16)          |
 Ethernet PHY, TXD2     | PIO10 (IO_L7P_T1_AD6P_35)     |
 Ethernet PHY, TXD3     | PIO11 (IO_L3N_T0_DQS_AD5N_35) |
-Ethernet PHY, MDIO     | PIO12 (IO_L5P_T0_AD13P_35)    |
-Ethernet PHY, MDC      | PIO13 (IO_L6N_T0_VREF_35)     |
-Ethernet PHY, PHYSRSTB | PIO14 (IO_L5N_T0_AD13N_35)    |
-Ethernet PHY, INTB     | PIO17 (IO_L9N_T1_DQS_AD7N_35) |
+Ethernet PHY, RESET_N  | PIO12 (IO_L5P_T0_AD13P_35)    |
+Ethernet PHY, INT_N    | PIO13 (IO_L6N_T0_VREF_35)     |
+Ethernet PHY, MDIO     | PIO14 (IO_L5N_T0_AD13N_35)    |
+Ethernet PHY, MDC      | PIO17 (IO_L9N_T1_DQS_AD7N_35) |
 Ethernet PHY, RXC      | PIO18 (IO_L12P_T1_MRCC_35)    | clock-in capable
 Ethernet PHY, RXCTL    | PIO19 (IO_L12N_T1_MRCC_35)    |
 Ethernet PHY, RXD0     | PIO20 (IO_L9P_T1_DQS_AD7P_35) |
 Ethernet PHY, RXD1     | PIO21 (IO_L10N_T1_AD15N_35)   |
 Ethernet PHY, RXD2     | PIO22 (IO_L10P_T1_AD15P_35)   |
 Ethernet PHY, RXD3     | PIO23 (IO_L19N_T3_VREF_35)    |
+
+The default behavior of the PHY can be configured by using pullup/pulldown resistors to the strap inputs.
+
+The strap-on pins should be configured as follows:
+
+pin | symbol    | pullup/pulldown | description
+--- | --------- | --------------- | --------------------------------------
+ 35 | PHYAD2    | pulldown (0)    | PHY address = 0
+ 15 | PHYAD1    | pulldown (0)    |
+ 17 | PHYAD0    | pulldown (0)    |
+ 38 | ALLPHYAD  | pulldown (0)    | Respond to broadcast address 0: yes
+ 27 | MODE3     | pullup (1)      | MODE 1010
+ 28 | MODE2     | pulldown (0)    |
+ 31 | MODE1     | pullup (1)      |
+ 32 | MODE0     | pulldown (0)    |
+ 33 | CLK125_EN | pulldown (0)    | Disable 125 MHz clock output on pin 41
+ 41 | LED_MODE  | pullup (1)      | Individual LED mode (**DOUBLECHECK**)
 
 ### Digilent PMOD connector (8 pins, no special requirements)
 
@@ -270,13 +290,27 @@ PMOD_p8           | PIO39 (IO_L16N_T2_34)      | bottom row
 PMOD_p9           | PIO35 (IO_L6P_T0_34)       | bottom row
 PMOD_p10          | PIO34 (IO_L6N_T0_VREF_34)  | bottom row
 
-#### Unused CMOD-A7 pins
+#### 3x2 pin header
+
+The remaining three pins are exposed via a 3x2 pin header with standard 2.54mm spacing, each via a 200 Ohm series resistor.
+
+These can be used for various purposes, e.g. deploying a LED or sensing a push button.
 
 function          | pin                        | remarks
 ----------------- | -------------------------- | --------
-(unused)          | PIO4  (IO_L7N_T1_AD6N_35)  |
-(unused)          | PIO40 (IO_L12N_T1_MRCC_34) |
-(unused)          | PIO45 (IO_L19P_T3_34)      |
+HEADER_p1         | PIO4  (IO_L7N_T1_AD6N_35)  |
+HEADER_p2         | PIO45 (IO_L19P_T3_34)      |
+HEADER_p3         | PIO40 (IO_L12N_T1_MRCC_34) |
+
+```
+3x2 pin header, 2.54 mm spacing:
+
++------+------+------+
+| pin1 | pin2 | pin3 |
++------+------+------+
+| GND  | GND  | GND  |
++------+------+------+
+```
 
 Physical layout
 ---------------
@@ -286,12 +320,12 @@ Physical layout
            PMOD:pin2      rp1n <->|  1 (35)        (34) 48 |<-- cp6n   BNC:DIGIN-Ch1
            PMOD:pin1      rp1p <->|  2 (35)        (34) 47 |<-- cp6p   BNC:DIGIN-Ch0 (clock-in)
 (clock-in) BNC:REFCLK-IN   c7p -->|  3 (16)        (34) 46 |<-- cp5p   BNC:DIGIN-Ch2 (clock-in)
-           (unused)       rp4n  x-|  4 (35)        (34) 45 |-x  (s)    (unused)
+           HEADER:pin1    rp4n <->|  4 (35)        (34) 45 |<-> (s)    HEADER:pin2
 (clock-in) BNC:DIGIN-Ch7  cp1p -->|  5 (16)        (34) 44 |<-> rp14p  PMOD:pin3
            PHY:TXC        rp2p <--|  6 (35)        (34) 43 |<-- cp5n   BNC:DIGIN-Ch3
            PHY:TXCTL      rp3n <--|  7 (16)        (34) 42 |<-> rp14n  PMOD:pin4
            PHY:TXD0       cp1n <--|  8 (16)        (34) 41 |<-> rp13p  PMOD:pin7
-           PHY:TXD1       rp3p <--|  9 (16)        (34) 40 |-x  cp3n   (unused)
+           PHY:TXD1       rp3p <--|  9 (16)        (34) 40 |<-> cp3n   HEADER:pin3
            PHY:TXD2       rp4p <--| 10 (35)        (34) 39 |<-> rp13n  PMOD:pin8
            PHY:TXD3       rp2n <--| 11 (35)        (34) 38 |<-- cp4p   BNC:DIGIN-Ch4 (clock-in)
            PHY:MDIO       rp5p <->| 12 (35)        (34) 37 |<-- cp4n   BNC:DIGIN Ch5
