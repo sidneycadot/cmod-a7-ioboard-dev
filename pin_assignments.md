@@ -217,7 +217,7 @@ BNC RefClock-In   | PIO3 (IO_L12P_T1_MRCC_16) | clock-in capable; AC coupled, vi
 
 The board will be equipped with a Microchip [KSZ9131RNX](http://ww1.microchip.com/downloads/en/DeviceDoc/00002841B.pdf) Gigabit ethernet transceiver.
 
-![Ethernet PHY pinout](images/microchip_phy_footprint.png)
+![Ethernet PHY pinout](images/microchip_phy_footprint_50pct.png)
 
 We need 16 PIOs, with one of them (RXC) clock-in capable.
 
