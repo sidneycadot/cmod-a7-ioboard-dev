@@ -292,7 +292,7 @@ PMOD_p10          | PIO34 (IO_L6N_T0_VREF_34)  | bottom row
 
 #### 3x2 pin header
 
-The remaining three pins are exposed via a 3x2 pin header with standard 2.54mm spacing, each via a 200 Ohm series resistor.
+The remaining three pins are exposed via a 3x2 pin header with standard 2.54mm spacing, each via a 200 Ohm series resistor, so we can drive LEDs safely if need be.
 
 These can be used for various purposes, e.g. deploying a LED or sensing a push button.
 
