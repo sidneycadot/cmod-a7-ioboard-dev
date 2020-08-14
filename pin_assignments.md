@@ -2,7 +2,7 @@
 CMOD-A7 I/O board pin assignment
 ================================
 
-Revision 2.1.0, 2020-08-13 (SC).
+Revision 2.1.1, 2020-08-13 (SC).
 
 Introduction
 ------------
@@ -10,21 +10,23 @@ Introduction
 The [Digilent CMOD-A7](https://store.digilentinc.com/cmod-a7-breadboardable-artix-7-fpga-module/) is an inexpensive
 FPGA development board built around a Xilinx Artix A7 FPGA. It is implemented as a breadboard-friendly 48-pins DIP module.
 
-We plan to design and manufacture an Open Hardware I/O board for the CMOD-A7 that will allow its
-application in R&D environments where robust digital I/O is required.
+We will design and manufacture an Open Hardware I/O board for the CMOD-A7 that will allow its application in R&D environments
+where robust digital I/O is required.
 
-In addition, the I/O board will feature a reference clock input, 2 analog inputs for the 1 MS/s
-on-board ADCs of the FPGA, a gigabit Ethernet connector, and a standard PMOD connector.
+In addition, the I/O board will feature a reference clock input, 2 analog inputs for the 1 MS/s on-board ADCs of the FPGA,
+a gigabit Ethernet connector, a standard PMOD connector, and a pin header for the pins that remain.
 
 The image below shows the pin numbering of the CMOD-A7 module:
 
 ![CMOD-A7 pinout](images/cmoda7_b_dip_40pct.png)
 
-Pins 15 and 16 are the analog input channels. The voltage input range is 0..3.3V, which is scaled to the 0..1V range expected by the FPGA's ADCs.
+Pins 15 and 16 are the analog input channels. The voltage input range on the pins is 0-3.3V, which is scaled to the 0-1V range expected by the FPGA's ADC input pins.
 
 Pin 24 is VU. It can be used as power supply to the CMOD-A7 (in case no USB is connected) or as a USB voltage monitor in case USB is connected.
 
-**TODO**: Make sure we can safely use the CMOD-A7 module with USB either connected or disconnected. See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options). A possible solution using a Schottky diode is mentioned there.
+**TODO: Make sure we can safely use the CMOD-A7 module with USB either connected or disconnected.
+See [Section 1.1 of the CMOD-A7 reference manual](https://reference.digilentinc.com/reference/programmable-logic/cmod-a7/reference-manual#power_input_options).
+A possible solution using a Schottky diode is mentioned there.**
 
 Pin 25 is GND. It is a bit unfortunate that we only have a single ground pin, but it will have to do.
 
@@ -34,7 +36,7 @@ All these pins use LVCMOS33 (low voltage CMOS, 3.3V) signal levels.
 The 44 PIO pins
 ---------------
 
-Not all PIO pins are created equal:
+Not all PIO pins are created equal, because the FPGA pins to which they are connected have different capabilities:
 
 * Some FPGA pins are designed for high-performance clock input signals.
 * Most FPGA pins can be configured for use as differential pairs.
@@ -46,8 +48,7 @@ We specify whether the pins are 'clock-in capable' or 'regular' (i.e., not clock
 Clock-in capable pins are those pins for which the Xilinx I/O pin identifier contains either 'MRCC' or 'SRCC'.
 
 * Note 1: Regular pins can also be used to lead clock signals into the FPGA, but this is sub-optimal,
-          explicitly discouraged by the Xilinx documentation,
-          and requires constraint file directives to override warnings in Vivado.
+          explicitly discouraged by the Xilinx documentation, and requires constraint file directives to override warnings in Vivado.
 * Note 2: Clock signals routed from the inside of the FPGA to the outside can be routed over 'regular' pins without issue.
 
 Note that pair-capable pins don't *have* to be used as pairs, they can also be used as two single-ended pins.
@@ -56,49 +57,49 @@ In case of using a clock-in capable pair as 2 regular pins, the positive pin of 
 
 ### Clock-in capable differential PIO pairs (6 pairs, 12 pins)
 
-positive pin (Xilinx name) | negative pin (Xilinx name) | remark
--------------------------- | -------------------------- | ----------------
-PIO5  (IO_L11P_T1_SRCC_16) | PIO8  (IO_L11N_T1_SRCC_16) | clock-in capable
-PIO18 (IO_L12P_T1_MRCC_35) | PIO19 (IO_L12N_T1_MRCC_35) | clock-in capable
-PIO36 (IO_L12P_T1_MRCC_34) | PIO40 (IO_L12N_T1_MRCC_34) | clock-in capable
-PIO38 (IO_L11P_T1_SRCC_34) | PIO37 (IO_L11N_T1_SRCC_34) | clock-in capable
-PIO46 (IO_L13P_T2_MRCC_34) | PIO43 (IO_L13N_T2_MRCC_34) | clock-in capable
-PIO47 (IO_L14P_T2_SRCC_34) | PIO48 (IO_L14N_T2_SRCC_34) | clock-in capable
+id   | positive pin (Xilinx name) | negative pin (Xilinx name) | remark
+---- | -------------------------- | -------------------------- | ----------------
+cp1  | PIO5  (IO_L11P_T1_SRCC_16) | PIO8  (IO_L11N_T1_SRCC_16) | clock-in capable
+cp2  | PIO18 (IO_L12P_T1_MRCC_35) | PIO19 (IO_L12N_T1_MRCC_35) | clock-in capable
+cp3  | PIO36 (IO_L12P_T1_MRCC_34) | PIO40 (IO_L12N_T1_MRCC_34) | clock-in capable
+cp4  | PIO38 (IO_L11P_T1_SRCC_34) | PIO37 (IO_L11N_T1_SRCC_34) | clock-in capable
+cp5  | PIO46 (IO_L13P_T2_MRCC_34) | PIO43 (IO_L13N_T2_MRCC_34) | clock-in capable
+cp6  | PIO47 (IO_L14P_T2_SRCC_34) | PIO48 (IO_L14N_T2_SRCC_34) | clock-in capable
 
 ### Clock-in capable single-ended PIO pins (1 pin)
 
-single-ended pin (Xilinx name) | remark
------------------------------- | ----------------
-PIO3 (IO_L12P_T1_MRCC_16)      | clock-in capable
+id   | single-ended pin (Xilinx name) | remark
+---- | ------------------------------ | ----------------
+cs1  | PIO3 (IO_L12P_T1_MRCC_16)      | clock-in capable
 
 The corresponding negative pin exists on the FPGA but it is not exposed as a DIP pin; it is used to drive one of the CMOD-A7 LEDs.
 
 ### Regular (not clock-in capable) differential PIO pairs (14 pairs, 28 pins)
 
-positive pin (Xilinx name)    | negative pin (Xilinx name)    | remark
------------------------------ | ----------------------------- | ------
-PIO2  (IO_L8P_T1_AD14P_35)    | PIO1  (IO_L8N_T1_AD14N_35)    |
-PIO6  (IO_L3P_T0_DQS_AD5P_35) | PIO11 (IO_L3N_T0_DQS_AD5N_35) |
-PIO9  (IO_L6P_T0_16)          | PIO7  (IO_L6N_T0_VREF_16)     |
-PIO10 (IO_L7P_T1_AD6P_35)     | PIO4  (IO_L7N_T1_AD6N_35)     |
-PIO12 (IO_L5P_T0_AD13P_35)    | PIO14 (IO_L5N_T0_AD13N_35)    |
-PIO20 (IO_L9P_T1_DQS_AD7P_35) | PIO17 (IO_L9N_T1_DQS_AD7N_35) |
-PIO22 (IO_L10P_T1_AD15P_35)   | PIO21 (IO_L10N_T1_AD15N_35)   |
-PIO26 (IO_L2P_T0_34)          | PIO27 (IO_L2N_T0_34)          |
-PIO28 (IO_L1P_T0_34)          | PIO30 (IO_L1N_T0_34)          |
-PIO29 (IO_L3P_T0_DQS_34)      | PIO31 (IO_L3N_T0_DQS_34)      |
-PIO33 (IO_L5P_T0_34)          | PIO32 (IO_L5N_T0_34)          |
-PIO35 (IO_L6P_T0_34)          | PIO34 (IO_L6N_T0_VREF_34)     |
-PIO41 (IO_L16P_T2_34)         | PIO39 (IO_L16N_T2_34)         |
-PIO44 (IO_L9P_T1_DQS_34)      | PIO42 (IO_L9N_T1_DQS_34)      |
+id   | positive pin (Xilinx name)    | negative pin (Xilinx name)    | remark
+---- | ----------------------------- | ----------------------------- | ------
+rp1  | PIO2  (IO_L8P_T1_AD14P_35)    | PIO1  (IO_L8N_T1_AD14N_35)    |
+rp2  | PIO6  (IO_L3P_T0_DQS_AD5P_35) | PIO11 (IO_L3N_T0_DQS_AD5N_35) |
+rp3  | PIO9  (IO_L6P_T0_16)          | PIO7  (IO_L6N_T0_VREF_16)     |
+rp4  | PIO10 (IO_L7P_T1_AD6P_35)     | PIO4  (IO_L7N_T1_AD6N_35)     |
+rp5  | PIO12 (IO_L5P_T0_AD13P_35)    | PIO14 (IO_L5N_T0_AD13N_35)    |
+rp6  | PIO20 (IO_L9P_T1_DQS_AD7P_35) | PIO17 (IO_L9N_T1_DQS_AD7N_35) |
+rp7  | PIO22 (IO_L10P_T1_AD15P_35)   | PIO21 (IO_L10N_T1_AD15N_35)   |
+rp8  | PIO26 (IO_L2P_T0_34)          | PIO27 (IO_L2N_T0_34)          |
+rp9  | PIO28 (IO_L1P_T0_34)          | PIO30 (IO_L1N_T0_34)          |
+rp10 | PIO29 (IO_L3P_T0_DQS_34)      | PIO31 (IO_L3N_T0_DQS_34)      |
+rp11 | PIO33 (IO_L5P_T0_34)          | PIO32 (IO_L5N_T0_34)          |
+rp12 | PIO35 (IO_L6P_T0_34)          | PIO34 (IO_L6N_T0_VREF_34)     |
+rp13 | PIO41 (IO_L16P_T2_34)         | PIO39 (IO_L16N_T2_34)         |
+rp14 | PIO44 (IO_L9P_T1_DQS_34)      | PIO42 (IO_L9N_T1_DQS_34)      |
 
 ### Regular (not clock-in capable) single-ended PIO pins (3 pins)
 
-single-ended pin (Xilinx name) | remark
------------------------------- | ------
-PIO13  (IO_L6N_T0_VREF_35)     |
-PIO23  (IO_L19N_T3_VREF_35)    |
-PIO45  (IO_L19P_T3_34)         |
+id   | single-ended pin (Xilinx name) | remark
+---- | ------------------------------ | ------
+rs1  | PIO13  (IO_L6N_T0_VREF_35)     |
+rs2  | PIO23  (IO_L19N_T3_VREF_35)    |
+rs3  | PIO45  (IO_L19P_T3_34)         |
 
 External interfaces
 -------------------
@@ -136,7 +137,7 @@ Mapping of available PIOs to interfaces
 ---------------------------------------
 
 The primary consideration with regard to pin assignment will be the assignment of clock-in capable pins.
-Seven clock-in capable pins are available on the CMOD-A7, and all seven of them will be explicitly used.
+Seven clock-in capable pins are available on the CMOD-A7, and all seven of them will be explicitly used as such.
 
 Two other considerations are far less important, but can guide the mapping choice in case there is
 no clear reason to prefer one choice over another:
@@ -165,6 +166,9 @@ BNC Analog-In #1 |  16 | via filter, buffer; range mapped from 0-5V to 0-3.3V.
 
 ### Digital output pins via BNC (8 pins)
 
+The digital outputs will drive 5V into a 50 Ohm BNC cable, with 50 Ohm source termination; it should
+therefore be capable of sourcing 50 mA.
+
 The 8 digital outputs don't need to be clock-in capable.
 
 We select them from bank 34.
@@ -184,6 +188,9 @@ BNC Digital-Out #6 | PIO33 (IO_L5P_T0_34)     |
 BNC Digital-Out #7 | PIO32 (IO_L5N_T0_34)     |
 
 ### Digital input pins via BNC (8 pins, 5 of which will be clock-in capable)
+
+The digital inputs will be BNCs with a selectable termination to ground of either
+50 Ohm or 10 kOhm.
 
 We will have 8 digital inputs, with 5 of them clock-in capable.
 
@@ -221,21 +228,19 @@ The board will be equipped with a Microchip [KSZ9131RNX](http://ww1.microchip.co
 
 We need 16 PIOs, with one of them (RXC) clock-in capable.
 
-The pin mapping was chosen mostly to give a somewhat natural pin order with respect to the
-pinout of the PHY shown above, which will make routing a bit easier.
-
+The pin mapping proposed here gives a somewhat natural pin order for the interface pins, which will hopefully make make routing a bit easier.
 **Daniël: feel free to exchange pins here to ease routing or optimize signals, as long as RXC remains connected to PIO18!**
 
 function               | pin                           | remarks
----------------------- | ----------------------------- | ----------------
+---------------------- | ----------------------------- | ------------------------
 Ethernet PHY, TXC      | PIO6  (IO_L3P_T0_DQS_AD5P_35) |
 Ethernet PHY, TXCTL    | PIO7  (IO_L6N_T0_VREF_16)     |
 Ethernet PHY, TXD0     | PIO8  (IO_L11N_T1_SRCC_16)    |
 Ethernet PHY, TXD1     | PIO9  (IO_L6P_T0_16)          |
 Ethernet PHY, TXD2     | PIO10 (IO_L7P_T1_AD6P_35)     |
 Ethernet PHY, TXD3     | PIO11 (IO_L3N_T0_DQS_AD5N_35) |
-Ethernet PHY, RESET_N  | PIO12 (IO_L5P_T0_AD13P_35)    |
-Ethernet PHY, INT_N    | PIO13 (IO_L6N_T0_VREF_35)     |
+Ethernet PHY, RESET_N  | PIO12 (IO_L5P_T0_AD13P_35)    | active-low (FPGA to PHY)
+Ethernet PHY, INT_N    | PIO13 (IO_L6N_T0_VREF_35)     | active-low (PHY to FPGA)
 Ethernet PHY, MDIO     | PIO14 (IO_L5N_T0_AD13N_35)    |
 Ethernet PHY, MDC      | PIO17 (IO_L9N_T1_DQS_AD7N_35) |
 Ethernet PHY, RXC      | PIO18 (IO_L12P_T1_MRCC_35)    | clock-in capable
@@ -293,6 +298,8 @@ PMOD_p10          | PIO34 (IO_L6N_T0_VREF_34)  | bottom row
 #### 3x2 pin header
 
 The remaining three pins are exposed via a 3x2 pin header with standard 2.54mm spacing, each via a 200 Ohm series resistor, so we can drive LEDs safely if need be.
+**TODO: Is 200 Ohm the best choice? Driving at 3.3V, we can probably make it a quite bit lower and still safely drive LEDS with a current of 20 mA, which seems to
+be the agreed-upon target current for LEDs.**
 
 These can be used for various purposes, e.g. deploying a LED or sensing a push button.
 
@@ -320,7 +327,7 @@ Physical layout
            PMOD:pin2      rp1n <->|  1 (35)        (34) 48 |<-- cp6n   BNC:DIGIN-Ch1
            PMOD:pin1      rp1p <->|  2 (35)        (34) 47 |<-- cp6p   BNC:DIGIN-Ch0 (clock-in)
 (clock-in) BNC:REFCLK-IN   c7p -->|  3 (16)        (34) 46 |<-- cp5p   BNC:DIGIN-Ch2 (clock-in)
-           HEADER:pin1    rp4n <->|  4 (35)        (34) 45 |<-> (s)    HEADER:pin2
+           HEADER:pin1    rp4n <->|  4 (35)        (34) 45 |<-> rs3    HEADER:pin2
 (clock-in) BNC:DIGIN-Ch7  cp1p -->|  5 (16)        (34) 44 |<-> rp14p  PMOD:pin3
            PHY:TXC        rp2p <--|  6 (35)        (34) 43 |<-- cp5n   BNC:DIGIN-Ch3
            PHY:TXCTL      rp3n <--|  7 (16)        (34) 42 |<-> rp14n  PMOD:pin4
@@ -329,17 +336,17 @@ Physical layout
            PHY:TXD2       rp4p <--| 10 (35)        (34) 39 |<-> rp13n  PMOD:pin8
            PHY:TXD3       rp2n <--| 11 (35)        (34) 38 |<-- cp4p   BNC:DIGIN-Ch4 (clock-in)
            PHY:MDIO       rp5p <->| 12 (35)        (34) 37 |<-- cp4n   BNC:DIGIN Ch5
-           PHY:MDC         (s) <--| 13 (35)        (34) 36 |<-- cp3p   BNC:DIGIN-Ch6 (clock-in)
-           PHY:PHYRSTB    rp5n <--| 14 (35)        (34) 35 |<-> rp12p  PMOD:pin9
+           PHY:MDC         rs1 <--| 13 (35)        (34) 36 |<-- cp3p   BNC:DIGIN-Ch6 (clock-in)
+           PHY:RESET_N    rp5n <--| 14 (35)        (34) 35 |<-> rp12p  PMOD:pin9
            BNC:ADC-Ch0   (adc) -->| 15 analog-in   (34) 34 |<-> rp12n  PMOD:pin10
            BNC:ADC-Ch1   (adc) -->| 16 analog-in   (34) 33 |--> rp11p  BNC:DIGOUT-Ch6
-           PHY:INTB       rp6n -->| 17 (35)        (34) 32 |--> rp11n  BNC:DIGOUT-Ch7
+           PHY:INT_N      rp6n -->| 17 (35)        (34) 32 |--> rp11n  BNC:DIGOUT-Ch7
 (clock-in) PHY:RXC        cp2p -->| 18 (35)        (34) 31 |--> rp10n  BNC:DIGOUT-Ch5
            PHY:RXCTL      cp2n -->| 19 (35)        (34) 30 |--> rp9n   BNC:DIGOUT-Ch3
            PHY:RXD0       rp6p -->| 20 (35)        (34) 29 |--> rp10p  BNC:DIGOUT-Ch4
            PHY:RXD1       rp7n -->| 21 (35)        (34) 28 |--> rp9p   BNC:DIGOUT-Ch2
            PHY:RXD2       rp7p -->| 22 (35)        (34) 27 |--> rp8n   BNC:DIGOUT-Ch1
-           PHY:RXD3        (s) -->| 23 (35)        (34) 26 |--> rp8p   BNC:DIGOUT-Ch0
+           PHY:RXD3        rs2 -->| 23 (35)        (34) 26 |--> rp8p   BNC:DIGOUT-Ch0
            VU                  ---| 24 power     ground 25 |---        GND
                                   +------------------------+
 
@@ -349,7 +356,7 @@ rp<i>p  regular (non clock-in capable) pair #i, positive pin
 rp<i>n  regular (non clock-in capable) pair #i, negative pin
 cp<i>p  clock-in capable pair #i, positive pin
 cp<i>n  clock-in capable pair #i, negative pin
-c<i>p   clock-in capable pin, unpaired
-(s)     single-ended pin (unpaired, not clock-in capable)
+cs<i>p  clock-in capable pin, single ended
+rs<i>   single-ended pin (unpaired, not clock-in capable)
 (adc)   analog input pin
 ```
