@@ -253,13 +253,13 @@ The default behavior of the PHY can be configured by using pullup/pulldown resis
 The strap-on pins should be configured as follows:
 
 pin | symbol    | pullup/pulldown | description
---- | --------- | --------------- | --------------------------------------
+--- | --------- | --------------- | --------------------------------------------------
  35 | PHYAD2    | pulldown (0)    | PHY address = 0
  15 | PHYAD1    | pulldown (0)    |
  17 | PHYAD0    | pulldown (0)    |
  38 | ALLPHYAD  | pullup (1)      | Respond only to own address (0)
- 27 | MODE3     | pullup (1)      | MODE 1110
- 28 | MODE2     | pulldown (1)    | RGMII, advertise 10/100/1000
+ 27 | MODE3     | pullup (1)      | MODE 1110: RGMII, advertise 10/100/1000 capability
+ 28 | MODE2     | pullup (1)      |
  31 | MODE1     | pullup (1)      |
  32 | MODE0     | pulldown (0)    |
  33 | CLK125_EN | pulldown (0)    | Disable 125 MHz clock output on pin 41
